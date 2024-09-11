@@ -14,17 +14,20 @@
   <body>
     <section class="bio">
       <h1>Elizabeth Teresa</h1>
-      <p>SELF-TAUGTH</p>
+      <p>SELF-TAUGHT</p>
       <p>Junior Web Developer</p>
 
-      <a href="https://docs.google.com/document/d/1AraeT9hPv6vKRSGkzD-1OPM6iXybjfjhJGoTcVUl6Xw/edit?usp=drive_link"><button>Resume</button></a>
+      <a
+        href="https://docs.google.com/document/d/1AraeT9hPv6vKRSGkzD-1OPM6iXybjfjhJGoTcVUl6Xw/edit?usp=drive_link"
+        ><button class="resume">Resume</button></a
+      >
       <a href="#projects"><i class="fa-solid fa-angle-down"></i></a>
     </section>
 
     <section class="projects" id="projects">
       <div class="section-title">
         <h2>Projects <i class="fa-solid fa-bars-progress"></i></h2>
-        <p>Visit sites and view my code</p>
+        <p>View my projects, check out my code && read my descriptions</p>
       </div>
 
       <div class="project-cards">
@@ -36,15 +39,16 @@
           <div class="icons-container">
             <div class="icon">
               <i class="fa-solid fa-eye"></i>
-              <a href="https://olveratkdpeakatl.com/">View</a>
+              <a href="#">View</a>
             </div>
             <div class="icon">
               <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/elizabeth171717/olveramartialarts">Github</a>
+              <a href="#">Github</a>
             </div>
-            <div class="icon">
-              <i class="fa-solid fa-circle-info"></i>
-              <a href="#">Info</a>
+            <div class="icon" id="open-olveraModal">
+              <button class="icon-button">
+                <i class="fa-solid fa-circle-info"></i>Info
+              </button>
             </div>
           </div>
         </div>
@@ -58,15 +62,16 @@
           <div class="icons-container">
             <div class="icon">
               <i class="fa-solid fa-eye"></i>
-              <a href="https://kcmd.homes/">View</a>
+              <a href="#">View</a>
             </div>
             <div class="icon">
               <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/elizabeth171717/kcdm">Github</a>
+              <a href="#">Github</a>
             </div>
-            <div class="icon">
-              <i class="fa-solid fa-circle-info"></i>
-              <a href="#">Info</a>
+            <div class="icon" id="open-kcmdModal">
+              <button class="icon-button">
+                <i class="fa-solid fa-circle-info"></i>Info
+              </button>
             </div>
           </div>
         </div>
@@ -80,15 +85,13 @@
           <div class="icons-container">
             <div class="icon">
               <i class="fa-solid fa-eye"></i>
-              <a href="https://elizabeth-teresas-team.adalo.com/tips">View</a>
+              <a href="#">View</a>
             </div>
-            <div class="icon">
-              <i class="fa-brands fa-github"></i>
-              <a href="#">Github</a>
-            </div>
-            <div class="icon">
-              <i class="fa-solid fa-circle-info"></i>
-              <a href="#">Info</a>
+
+            <div class="icon" id="open-adaloModal">
+              <button class="icon-button">
+                <i class="fa-solid fa-circle-info"></i>Info
+              </button>
             </div>
           </div>
         </div>
@@ -193,6 +196,59 @@
         </div>
       </div>
     </section>
+    <div class="modal1" id="olvera-modal">
+      <div class="modal-content">
+        <div class="modal-intro">
+          <p style="border-bottom: 5px solid black">Landing Page</p>
+          <div id="close-olvera-modal"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="modal-description">
+          <p>
+            I have been working for this gym as a freelancer for 3 years. I
+            developed this landing page following the gym's owner desing. The
+            site is responsive and user friendly , it showcases gym's contact
+            information, location, hours and classes. This is my very first REAL
+            project, getting a domain,finding a hosting site and being able to
+            put it on the web was an adeventure and I learn every day from this
+            site.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal2" id="kcmd-modal">
+      <div class="modal-content">
+        <div class="modal-intro">
+          <p style="border-bottom: 5px solid black">Landing Page</p>
+          <div id="close-kcmdModal"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="modal-description">
+          <p>
+            I built this landing page for a NEW construction company that needed
+            online presence to attract new clients. Branding was part of my
+            responsabilities, it was hard but costumer helped a liltte,
+            responsive design and user friendly.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal3" id="adalo-modal">
+      <div class="modal-content">
+        <div class="modal-intro">
+          <p style="border-bottom: 5px solid black">Mobile APP</p>
+          <div id="close-adaloModal"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="modal-description">
+          <p>
+            I built this landing page for a NEW construction company that needed
+            online presence to attract new clients. Branding was part of my
+            responsabilities, it was hard but costumer helped a liltte,
+            responsive design and user friendly.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
