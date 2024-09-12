@@ -157,6 +157,8 @@ img{
     gap:1rem;
     background-color: black;
     color: white;
+      background-image: url('download.gif');
+    font-weight: bold;
 }
 
 .bio .fa-angle-down{
@@ -286,41 +288,24 @@ align-items: center;
 
         
 
-
 /*CONTACT SECTION*/
 
 .contact-conatiner{
-width: 90%;
-
-
-
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 
 .contact-info{
-    width: 100%;
- 
-    height: 60vh;
-    background-image: url(book.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  border: 15px solid black;
+  padding: 1rem;
 }
+
+
 
 .contact-info p{
    margin-top: .50rem;
 }
 
-@media (min-width:50rem) {
-   
-    .contact-conatiner{
-        width: 40%;
-        
-        
-        
-        }   
-    }
