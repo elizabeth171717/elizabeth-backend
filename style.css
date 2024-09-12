@@ -227,16 +227,15 @@ align-items: center;
 }
 
 .icon-button{
-    padding: .20rem;
+    padding: .50rem;
     display: flex;
     gap: .20rem;
     align-items: center;
     border-radius: 1rem;
-}
-
-.icon-button{
     cursor: pointer;
 }
+
+
 
 @media (min-width:45rem) {
     .project-cards{
