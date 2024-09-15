@@ -135,7 +135,7 @@ section:nth-child(1){
 
 .section-title h2{
     margin-bottom:.50rem ;
-    
+    color: #00FF00;
 }
 img{
     width: 100%;
