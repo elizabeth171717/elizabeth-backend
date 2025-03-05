@@ -34,7 +34,7 @@ const Contact = () => {
 
   return (
     <div className="contact-container">
-      <h2>Contact Me</h2>
+      <h2>Hit me up</h2>
 
       {/* ✅ Show modal when form is submitted */}
       {showModal && (
