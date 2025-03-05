@@ -1,2 +1,0 @@
-# elizabethportfolio
-My Portfolio
