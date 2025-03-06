@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmail(customerEmail, customerName, customerMessage, customerPhone) {
   try {
-    console.log("📨 Sending confirmation email to customer:", customerEmail);
+   
 
     const customerMailOptions = {
       from: process.env.EMAIL_USER,
@@ -21,7 +21,7 @@ async function sendEmail(customerEmail, customerName, customerMessage, customerP
     };
 
     await transporter.sendMail(customerMailOptions);
-    console.log("✅ Confirmation email sent to customer!");
+   
 
     // 🔥 DEBUG: Check if OWNER_EMAIL exists
     if (!process.env.OWNER_EMAIL) {
