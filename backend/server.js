@@ -1,18 +1,23 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+
 require("dotenv").config();
 const { connectDB } = require("./db"); // Import database connection
 const sendEmail = require('./sendEmail'); // Import email function
 const app = express();
 
 
-
+// CORS configuration for production
+const corsOptions = {
+  origin: "https://elizabeth-backend-1.onrender.com", // Set this to your actual frontend URL
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+};
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors(corsOptions)); // Make sure to pass the corsOptions here
+app.use(express.json()); // Use express.json() instead of bodyParser
 
 connectDB(); // Connect to MongoDB when server starts
 
