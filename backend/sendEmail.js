@@ -39,7 +39,7 @@ async function sendEmail(customerEmail, customerName, customerMessage, customerP
     };
 
     await transporter.sendMail(ownerMailOptions);
-    console.log("✅ Notification email sent to OWNER!");
+    console.log("✅ Notification email sent to OWNER, you!");
 
   } catch (error) {
     console.error('❌ Error sending emails:', error);
