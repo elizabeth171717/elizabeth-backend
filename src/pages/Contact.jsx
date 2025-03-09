@@ -2,6 +2,12 @@ import { useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import SuccessModal from "../components/SuccessModal";
 
+// Determine the backend URL based on the environment
+const BACKEND_URL =
+  import.meta.env.MODE === "production"
+    ? import.meta.env.VITE_BACKEND_URL_PRODUCTION
+    : import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,14 +24,11 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://elizabeth-backend.onrender.com/api/contact",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      }
-    );
+    const response = await fetch(`${BACKEND_URL}/api/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
     if (response.ok) {
       setShowModal(true); // Show success modal
@@ -64,7 +67,7 @@ const Contact = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
         />
         <br />
         <input
