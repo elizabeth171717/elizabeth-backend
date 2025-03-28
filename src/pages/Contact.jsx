@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import SuccessModal from "../components/SuccessModal";
 
 // Determine the backend URL based on the environment
@@ -16,6 +16,7 @@ const Contact = () => {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
   const [showModal, setShowModal] = useState(false); // State to show modal
 
   const handleChange = (e) => {
@@ -24,23 +25,39 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${BACKEND_URL}/api/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    setIsSubmitting(true);
 
-    if (response.ok) {
-      setShowModal(true); // Show success modal
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } else {
-      alert("Something went wrong!");
+    // Disable scrolling
+    document.body.style.overflow = "hidden";
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setShowModal(true); // Show success modal
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        alert("Something went wrong!");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while submitting.");
     }
+
+    // Re-enable scrolling
+    document.body.style.overflow = "auto";
+    setIsSubmitting(false);
   };
 
   return (
     <div className="contact-container">
-      <h2>Hit me up</h2>
+      <h2 className="page-title">
+        &quot;Let’s build something amazing together—reach out!&quot;
+      </h2>
 
       {/* ✅ Show modal when form is submitted */}
       {showModal && (
@@ -80,7 +97,6 @@ const Contact = () => {
           pattern="\d{10}"
           title="Phone number must be 10 digits"
         />
-
         <br />
         <textarea
           name="message"
@@ -89,21 +105,24 @@ const Contact = () => {
           onChange={handleChange}
           required
         />
-
         <br />
 
-        <button type="submit">Send</button>
+        {/* Submit button with loading state */}
+        <button
+          type="submit"
+          className={`submit-button ${isSubmitting ? "disabled" : ""}`}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Submitting..." : "Send"}
+        </button>
       </form>
 
       <div className="contact-icons">
-        <a href="https://github.com/yourprofile">
+        <a href="https://github.com/elizabeth171717">
           <FaGithub />
         </a>
-        <a href="https://linkedin.com/in/yourprofile">
+        <a href="https://www.linkedin.com/in/elizabethtr/">
           <FaLinkedin />
-        </a>
-        <a href="mailto:youremail@gmail.com">
-          <FaEnvelope />
         </a>
       </div>
     </div>
