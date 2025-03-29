@@ -19,7 +19,7 @@ const Nav = () => {
             to="/projects"
             className={({ isActive }) => (isActive ? "active-li" : "")}
           >
-            <FaFolderOpen /> Portfolio
+            <FaFolderOpen /> Projects
           </NavLink>
         </li>
         <li>
