@@ -60,8 +60,8 @@ header h1 {
 }
 
 .page-title{
-  font-size: 28px;
-    margin-bottom: 20px;
+ 
+    margin-bottom: 1rem;
     border-bottom: 2px solid #ff4c4c;
     display: inline-block;
 }
@@ -148,12 +148,12 @@ main {
 
     /* Hero Section */
     .hero {
-      text-align: center;
-      padding: 80px 20px;
+    
+    
     }
     
     .hero h2 {
-      font-size: 38px;
+      
       font-weight: bold;
       color: #ff4c4c;
     }
@@ -161,7 +161,7 @@ main {
     .hero p {
       color: #bbb;
       font-size: 18px;
-      margin-top: 10px;
+      margin-top: 1rem;
     }
 
 /* Admin Dashboard Button */
