@@ -156,7 +156,7 @@ const Homepage = () => {
 
           <textarea
             name="message"
-            placeholder="I own construction company and need a website"
+            placeholder="I own  a construction company and need a website"
             value={formData.message}
             onChange={handleChange}
             required
