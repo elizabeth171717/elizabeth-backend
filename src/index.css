@@ -41,6 +41,7 @@
   }
 
   .hero-subtitle{
+    margin-top: 1rem;
     color: #ff4c4c;
     font-family: "Barrio", system-ui;
     font-weight: bold;
