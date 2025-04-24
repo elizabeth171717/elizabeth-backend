@@ -17,7 +17,9 @@ async function sendEmail(customerEmail, customerName, customerMessage, customerP
       from: process.env.EMAIL_USER,
       to: customerEmail,
       subject: 'Thank You for Contacting Me!',
-      text: `Hi ${customerName},\n\nThank you for reaching out! I’d love to learn more about your project.\n\nBest,\nElizabeth`
+      text: `Hi ${customerName},\n\nThank you for reaching out! I'm exited to start working on your project.
+      I would like to know more about your business, What is your Business name? Where are you located?
+      Do you have pictures ,fonts and colors you would like me to use in your project?.\n\nBest,\nElizabeth`
     };
 
     await transporter.sendMail(customerMailOptions);
