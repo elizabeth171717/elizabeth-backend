@@ -71,7 +71,7 @@ const Homepage = () => {
         </div>
         <div className="hero-description">
           <p>
-            Bilingual Web Developer here to help small businesses grow with
+            Bilingual Web Developer, here to help small businesses grow with
             custom websites that work. I combine Online precense with real
             business results.
           </p>
@@ -81,6 +81,13 @@ const Homepage = () => {
         </div>
       </div>
       <div className="services-section">
+        <div className="title">
+          <h1 className="subtitle">MY SERVICES</h1>
+          <p className="title-description">
+            Need help with any of the following services? Hire me TODAY!{" "}
+          </p>
+        </div>
+
         <div className="services-container">
           <div className="service">
             <p>Website</p>
@@ -109,10 +116,12 @@ const Homepage = () => {
         </div>
       </div>
       <div className="contact-container">
-        <h2>
-          Let&apos;s work together - Describe your Business & the service you
-          need!
-        </h2>
+        <div className="title">
+          <h1 className="subtitle"> Let&apos;s work together</h1>
+          <p className="title-description">
+            Fill Out Form- Describe your Business & the service you need!
+          </p>
+        </div>
 
         {/* ✅ Show modal when form is submitted */}
         {showModal && (
@@ -169,10 +178,14 @@ const Homepage = () => {
             className={`submit-button ${isSubmitting ? "disabled" : ""}`}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Submitting..." : "Send"}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
+
+      <footer>
+        <p>Elizabeth. All rights reserved 2025 </p>
+      </footer>
     </div>
   );
 };

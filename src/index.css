@@ -24,7 +24,9 @@
     font-size: 1.25rem;
   }
 
-
+.title-description{
+  margin-top: 1rem;
+}
   /* Hero Section */
    .hero-section{
     margin: 0 auto;
@@ -40,7 +42,7 @@
    
   }
 
-  .hero-subtitle{
+  .hero-subtitle, .subtitle{
     margin-top: 1rem;
     color: #ff4c4c;
     font-family: "Barrio", system-ui;
@@ -75,6 +77,8 @@
   .hero-description{
 padding: 0 .50rem;
   }
+
+
   @media (min-width:45rem) {
     .hero-section{
      width: 40rem;
@@ -91,8 +95,13 @@ padding: 0 .50rem;
 .services-section{
   width: 100%;
   display: flex;
+  gap: 5rem;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 7rem 0;
+  background-color: #a32929;
+  padding: 5rem 1rem;
 }
 
 .services-container{
@@ -109,7 +118,15 @@ padding: 0 .50rem;
    
     border:1px solid #ff4c4c;
     border-top-right-radius: 20px;
-    font-family: "Barrio", system-ui;
+  
+  }
+
+  @media (min-width:45rem) {
+    .services-container{
+      width: 80%;
+     justify-content: center;
+    
+    }
   }
 
 
@@ -117,7 +134,7 @@ padding: 0 .50rem;
   .contact-container{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
     padding: 1rem;
     background-image: url("./assets/icons.gif");
   }
@@ -154,11 +171,11 @@ padding: 0 .50rem;
     font-weight: bold;
     text-decoration: none;
     
-    padding: 8px 12px;
+    padding: 1rem;
     border-radius: 5px;
     transition: 0.3s;
     display: inline-block;
-   
+   font-size: 1.25rem;
   }
   
    button:hover {
@@ -244,3 +261,6 @@ padding: 0 .50rem;
 }
 
 
+footer{
+  padding: 1rem;
+}
