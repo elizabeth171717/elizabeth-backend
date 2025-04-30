@@ -15,7 +15,7 @@
         margin: 0 auto;
       }
       
-      a{
+  a{
         text-decoration: none;
         color: white;
          }
@@ -24,118 +24,55 @@
     font-size: 1.25rem;
   }
 
-.title-description{
-  margin-top: 1rem;
-}
+ 
+  .main-container{
+   margin: 0 auto;
+  }
+
+
+  @media (min-width:45rem) {
+    .main-container{
+      width: 40rem;
+    }
+  }
+
   /* Hero Section */
    .hero-section{
-    margin: 0 auto;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
- 
-  }
+  width: 100%;
+
+}
   .hero-title{
     text-align: left;
-   
-  }
+   }
 
   .hero-subtitle, .subtitle{
     margin-top: 1rem;
+    padding: .50rem .25rem ;
     color: #ff4c4c;
     font-family: "Barrio", system-ui;
-    font-weight: bold;
-    font-style: normal;
-    font-size: 2rem;
+   font-size: 1.75rem;
+    
   }
+
   h3{
     display: inline-block;
     color: white;
     background-color:#ff4c4c;
     display: block;
-    letter-spacing: 1px;
     padding: .50rem .25rem ;
     font-weight: bold;
   }
 
  
-
-  .hero-img{
-    width: 70%;
-    
-  }
-
-  .hero-img img{
-    width: 100%;
    
-   
-    border-top-right-radius: 20px;
-  }
-
-  .hero-description{
-padding: 0 .50rem;
-  }
-
-
-  @media (min-width:45rem) {
-    .hero-section{
-     width: 40rem;
-     }
-
-     .hero-img{
-      width: 50%;
-      
-    }
-  }
-
-
-   /* Service Section */
-.services-section{
-  width: 100%;
-  display: flex;
-  gap: 5rem;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 7rem 0;
-    padding: 5rem 1rem;
-}
-
-.services-container{
- 
-  width: 100%;
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- align-items: center;
- gap: 1rem;
-}
-  .service{
-    padding: 1rem;
-    font-weight: bold;
-    border:3px solid #ff4c4c;
-    border-top-right-radius: 20px;
-  
-  }
-
-  @media (min-width:45rem) {
-    .services-container{
-      width: 80%;
-     justify-content: center;
-    
-    }
-  }
-
 
   /* Contact Section */
   .contact-container{
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
     padding: 1rem;
-    background-image: url("./assets/icons.gif");
+ margin-top: 3rem;
   }
 
 
@@ -169,7 +106,7 @@ padding: 0 .50rem;
     background: #ff4c4c;
     font-weight: bold;
     text-decoration: none;
-    
+    margin-top: 2rem;
     padding: 1rem;
     border-radius: 5px;
     transition: 0.3s;
@@ -193,13 +130,6 @@ padding: 0 .50rem;
     align-items: flex-start;
   }
 
-  /* Responsive Design */
-@media (min-width: 45rem) {
-  .contact-container {
-    margin: 5rem auto;
-    width: 40rem;
-  }
-}
 
 /* Overlay covers full screen */
 .modal-overlay {

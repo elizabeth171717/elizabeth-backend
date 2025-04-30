@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import SuccessModal from "../components/SuccessModal";
-import Elizabeth from "../assets/ETR.jpg";
+
 // Determine the backend URL based on the environment
 const BACKEND_URL =
   import.meta.env.MODE === "production"
@@ -64,62 +64,18 @@ const Homepage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              FREELANCER
+              Elizabeth-Web Developer
             </motion.h2>
           </div>
-          <h3>Elizabeth Teresa-Ramirez</h3>
-        </div>
-        <div className="hero-description">
-          <p>
-            Bilingual Web Developer, here to help small businesses grow with
-            custom websites that work. I combine Online precense with real
-            business results.
-          </p>
-        </div>
-        <div className="hero-img">
-          <img src={Elizabeth} />
+          <h3>Costumers are searching online - Help them find you.</h3>
         </div>
       </div>
-      <div className="services-section">
-        <div className="title">
-          <h1 className="subtitle">MY SERVICES</h1>
-          <p className="title-description">
-            Need help with any of the following services? Hire me TODAY!{" "}
-          </p>
-        </div>
 
-        <div className="services-container">
-          <div className="service">
-            <p>Website</p>
-          </div>
-          <div className="service">
-            <p>Website Optimation</p>
-          </div>
-          <div className="service">
-            <p> E-commerce</p>
-          </div>
-          <div className="service">
-            <p>Facebook</p>
-          </div>
-          <div className="service">
-            <p>Instagram</p>
-          </div>
-          <div className="service">
-            <p>Email Setup</p>
-          </div>
-          <div className="service">
-            <p> Google My Business</p>
-          </div>
-          <div className="service">
-            <p>Translations</p>
-          </div>
-        </div>
-      </div>
       <div className="contact-container">
         <div className="title">
           <h1 className="subtitle"> Let&apos;s work together</h1>
-          <p className="title-description">
-            Fill Out Form- Describe your Business & the service you need!
+          <p>
+            Fill Out these Form- Describe your Business & the service you need!
           </p>
         </div>
 
