@@ -73,10 +73,7 @@ const Homepage = () => {
             <FontAwesomeIcon icon={faFacebook} />{" "}
           </a>
         </div>
-        <h3>
-          Professional Website Design for your business, to showcase your
-          products or services online.
-        </h3>
+        <h3>Professional and Modern Website Design</h3>
       </div>
 
       <section className="contact-form">
@@ -134,6 +131,7 @@ const Homepage = () => {
             <option value="" disabled>
               Select a service
             </option>
+
             <option value="Website Design">Website Design</option>
             <option value="Website Redesign">Website Redesign</option>
             <option value="Website Optimization">Website Optimization</option>

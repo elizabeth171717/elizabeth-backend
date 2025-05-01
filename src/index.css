@@ -19,7 +19,7 @@
 
       .main-container{
         margin: 0 auto;
-        padding: 1rem;
+       
        }
      
      
@@ -31,7 +31,8 @@
       
   a{
         text-decoration: none;
-        color: white;
+        color: #ff4c4c;
+        cursor: pointer;
          }
 
  
@@ -50,29 +51,29 @@
   h3{
     color: white;
     background-color:#ff4c4c;
-    padding: .50rem .25rem ;
+    padding: .50rem ;
     
   }
 
  
   /* Contact Section */
   .contact-form{
-   margin-top: 3rem;
+   margin-top: 5rem;
+   padding:0 1rem ;
+   text-align: center;
   }
   .subtitle{
 margin-bottom: 1rem;
 font-family: "Barrio", system-ui;
     color: #ff4c4c;
-    text-align: center;
+ 
   }
   
 
 .form{
   width: 100%;
   margin-top: 2rem;
- display: flex;
- flex-direction: column;
- justify-content: center;
+ 
 }
 
   input,
@@ -109,8 +110,11 @@ font-family: "Barrio", system-ui;
     padding: 1rem;
     border-radius: 5px;
     transition: 0.3s;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    width: 100%;
    font-size: 1.25rem;
+   cursor: pointer;
   }
   
    button:hover {
