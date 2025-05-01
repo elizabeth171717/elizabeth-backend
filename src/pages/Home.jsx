@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+
 import SuccessModal from "../components/SuccessModal";
 
 // Determine the backend URL based on the environment
@@ -14,7 +18,7 @@ const Homepage = () => {
     name: "",
     email: "",
     phone: "",
-    message: "",
+    service: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
@@ -56,27 +60,29 @@ const Homepage = () => {
 
   return (
     <div className="main-container">
-      <div className="hero-section">
-        <div className="hero-title">
-          <div className="hero-subtitle">
-            <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Elizabeth-Web Developer
-            </motion.h2>
-          </div>
-          <h3>Costumers are searching online - Help them find you.</h3>
+      <div className="site-intro">
+        <div className="site-name">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            Elizabeth TR
+          </motion.h2>
+          <a href="https://www.facebook.com/profile.php?id=61575876650894">
+            <FontAwesomeIcon icon={faFacebook} />{" "}
+          </a>
         </div>
+        <h3>
+          Professional Website Design for your business, to showcase your
+          products or services online.
+        </h3>
       </div>
 
-      <div className="contact-container">
-        <div className="title">
-          <h1 className="subtitle"> Let&apos;s work together</h1>
-          <p>
-            Fill Out these Form- Describe your Business & the service you need!
-          </p>
+      <section className="contact-form">
+        <div className="title-container">
+          <h1 className="subtitle"> Fill Out these Form to get started</h1>
+          <p>Your business exists — let’s make sure the world sees it Today</p>
         </div>
 
         {/* ✅ Show modal when form is submitted */}
@@ -87,7 +93,7 @@ const Homepage = () => {
           />
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
@@ -119,13 +125,28 @@ const Homepage = () => {
           />
           <br />
 
-          <textarea
-            name="message"
-            placeholder="I own  a construction company and need a website"
+          <select
+            name="service"
             value={formData.message}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="" disabled>
+              Select a service
+            </option>
+            <option value="Website Design">Website Design</option>
+            <option value="Website Redesign">Website Redesign</option>
+            <option value="Website Optimization">Website Optimization</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Email Setup">Email Setup</option>
+            <option value="Google My Business">Google My Business</option>
+            <option value="Translations">Translations</option>
+            <option value="HTML Tutorial">HTML Tutorial</option>
+            <option value="CSS Tutorial">CSS Tutorial</option>
+          </select>
+
           <br />
 
           {/* Submit button with loading state */}
@@ -137,7 +158,7 @@ const Homepage = () => {
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </form>
-      </div>
+      </section>
 
       <footer>
         <p>Elizabeth. All rights reserved 2025 </p>

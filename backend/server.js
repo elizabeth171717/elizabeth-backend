@@ -37,15 +37,15 @@ const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
   phone: String,
-  message: String,
-});
+  service: String,
+}, { timestamps: true });
 
 const Contact = mongoose.model("Contact", contactSchema);
 
 // API Route to Submit Contact Form
 app.post("/api/contact", async (req, res) => {
   try {
-    const { name, email, phone, message } = req.body;
+    const { name, email, phone, service } = req.body;
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
@@ -57,10 +57,10 @@ app.post("/api/contact", async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid phone number. Must be 10 digits." });
     }
 
-    const newContact = new Contact({ name, email, phone, message });
+    const newContact = new Contact({ name, email, phone, service });
     await newContact.save();
 
-    await sendEmail(email, name, message, phone);
+    await sendEmail(email, name, service, phone);
 
     res.status(201).json({ success: true, message: "Message sent successfully!" });
   } catch (error) {
