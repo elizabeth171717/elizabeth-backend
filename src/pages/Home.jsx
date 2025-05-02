@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import ReactGA from "react-ga4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
@@ -45,6 +45,12 @@ const Homepage = () => {
       if (response.ok) {
         setShowModal(true); // Show success modal
         setFormData({ name: "", email: "", phone: "", message: "" });
+        // Inside your form submit function (after successful submission)
+        ReactGA.event({
+          category: "Contact",
+          action: "Form Submitted",
+          label: "Contact Page Form",
+        });
       } else {
         alert("Something went wrong!");
       }
