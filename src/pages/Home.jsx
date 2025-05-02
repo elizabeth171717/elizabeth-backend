@@ -75,8 +75,19 @@ const Homepage = () => {
           >
             Elizabeth TR
           </motion.h2>
-          <a href="https://www.facebook.com/profile.php?id=61575876650894">
-            <FontAwesomeIcon icon={faFacebook} />{" "}
+          <a
+            href="https://www.facebook.com/profile.php?id=61575876650894"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              ReactGA.event({
+                category: "Engagement",
+                action: "Clicked Facebook Link",
+                label: "Header Social Icon",
+              })
+            }
+          >
+            <FontAwesomeIcon icon={faFacebook} className="faFacebook" />
           </a>
         </div>
         <h3>Professional and Modern Website Design</h3>

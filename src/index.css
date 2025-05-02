@@ -35,16 +35,17 @@
         cursor: pointer;
          }
 
- 
+        .faFacebook
+         {
+          font-size: 2rem;
+         }
 
   .site-name{
     margin-top: 1rem;
     padding: .50rem ;
-   
-    font-family: "Barrio", system-ui;
-    color: #ff4c4c;
+   font-family: "Barrio", system-ui;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
 
@@ -65,7 +66,7 @@
   .subtitle{
 margin-bottom: 1rem;
 font-family: "Barrio", system-ui;
-    color: #ff4c4c;
+
  
   }
   
