@@ -1,83 +1,64 @@
 const express = require("express");
-const mongoose = require("mongoose");
+require("dotenv").config();
+
 const cors = require("cors");
 
-require("dotenv").config();
-const { connectDB } = require("./db"); // Import database connection
-const sendEmail = require("./sendEmail"); // Import email function
+const tenantConfigs = require("./config/tenantConfigs");
+const paymentRoutes = require("./routes/paymentRoutes");
+const contactRoutes = require("./routes/contactRoutes"); // ✅ New
+
 
 const app = express();
-
-// ✅ Determine environment
 const isProduction = process.env.NODE_ENV === "production";
+console.log("🚀 Loaded DEV origin for portfolio:", tenantConfigs.portfolio.FRONTEND_URL_DEVELOPMENT);
 
-// ✅ CORS configuration (automatically switches between production & development)
+// ✅ Multi-tenant CORS logic
 const corsOptions = {
-  origin: isProduction ? process.env.FRONTEND_URL_PRODUCTION : process.env.FRONTEND_URL_DEVELOPMENT,
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
+  origin: (origin, callback) => {
+    console.log("🔎 Incoming origin:", origin);
+    if (!origin) return callback(null, true);
+
+    let matchedTenant = null;
+
+    const isAllowed = Object.entries(tenantConfigs).some(([key, config]) => {
+      const allowedOrigin = isProduction
+        ? config.FRONTEND_URL_PRODUCTION
+        : config.FRONTEND_URL_DEVELOPMENT;
+
+      if (allowedOrigin === origin) {
+        matchedTenant = key;
+        return true;
+      }
+
+      return false;
+    });
+
+    if (isAllowed) {
+      console.log(`✅ Allowed by CORS for tenant: ${matchedTenant}`);
+      callback(null, true);
+    } else {
+      console.log("❌ Origin not allowed by CORS");
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
 
-// Middleware
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
-connectDB(); // Connect to MongoDB when server starts
 
-// ✅ Automatically switch MongoDB connection
-const MONGO_URI = process.env.MONGO_URI; // No need for a local version since yours is working
+// ✅ Multi-tenant API Routes
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log(`✅ MongoDB Connected Successfully (${isProduction ? "Production" : "Development"})`))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+app.use('/api', paymentRoutes); // ✅
+app.use('/api', contactRoutes);   // /api/contact/:client
 
-// Define Contact Schema
-const contactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  service: String,
-}, { timestamps: true });
 
-const Contact = mongoose.model("Contact", contactSchema);
 
-// API Route to Submit Contact Form
-app.post("/api/contact", async (req, res) => {
-  try {
-    const { name, email, phone, service } = req.body;
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ success: false, message: "Invalid email format" });
-    }
 
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(phone)) {
-      return res.status(400).json({ success: false, message: "Invalid phone number. Must be 10 digits." });
-    }
 
-    const newContact = new Contact({ name, email, phone, service });
-    await newContact.save();
-
-    await sendEmail(email, name, service, phone);
-
-    res.status(201).json({ success: true, message: "Message sent successfully!" });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-// API Route to Fetch All Contact Form Responses
-app.get("/api/contacts", async (req, res) => {
-  try {
-    const contacts = await Contact.find();
-    res.status(200).json(contacts);
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-// Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} (${isProduction ? "Production" : "Development"})`));
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT} (${isProduction ? "Production" : "Development"})`);
+});

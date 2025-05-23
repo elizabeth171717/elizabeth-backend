@@ -12,6 +12,9 @@ const BACKEND_URL =
   import.meta.env.MODE === "production"
     ? import.meta.env.VITE_BACKEND_URL_PRODUCTION
     : import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
+const client = import.meta.env.VITE_CLIENT;
+console.log("📦 Backend URL:", BACKEND_URL);
+console.log("🏷️ Client tenant:", client);
 
 const Homepage = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +39,7 @@ const Homepage = () => {
     document.body.style.overflow = "hidden";
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+      const response = await fetch(`${BACKEND_URL}/api/${client}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

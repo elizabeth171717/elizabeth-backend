@@ -1,5 +1,5 @@
 
-  const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema({
   name: String,
@@ -8,6 +8,5 @@ const contactSchema = new mongoose.Schema({
   service: String,
 }, { timestamps: true }); // Optional but recommended
 
-const Contact = mongoose.model("Contact", contactSchema);
 
-module.exports = Contact;
+module.exports = contactSchema; // ✅ export schema, not model
