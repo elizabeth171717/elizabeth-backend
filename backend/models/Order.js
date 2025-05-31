@@ -12,6 +12,8 @@ const orderSchema = new mongoose.Schema({
   subtotal: { type: Number, required: true },
   tax: { type: Number, required: true },
   deliveryFee: { type: Number, required: true },
+  
+ tip: { type: Number, required: false }, // ✅ Optional field
   total: { type: Number, required: true },
   customerName: { type: String, required: true },
   customerEmail: { type: String, required: true },
