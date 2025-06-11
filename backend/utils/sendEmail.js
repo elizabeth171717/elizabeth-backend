@@ -21,14 +21,13 @@ async function sendEmail(customerEmail, customerName, orderData, client) {
   console.log("📨 Sending email to:", customerEmail);
 
   try {
-    const {
-      orderNumber, tamales, subtotal, tax, tip, deliveryFee,
-      total, deliveryDate, deliveryTime, deliveryAddress
-    } = orderData;
+   const {
+  orderNumber, tamales, subtotal, tax, tip,
+  total, deliveryDate, deliveryTime, deliveryAddress
+} = orderData;
 
-    const tamaleSummary = tamales.map(tamale =>
-      `- ${tamale.quantity}x ${tamale.name} ($${tamale.basePrice.toFixed(2)} each)`
-    ).join("\n");
+const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside deliveryAddress
+
 
     const orderSummary = `
       <div
@@ -173,4 +172,3 @@ async function sendEmail(customerEmail, customerName, orderData, client) {
 }
 
 module.exports = sendEmail;
-
