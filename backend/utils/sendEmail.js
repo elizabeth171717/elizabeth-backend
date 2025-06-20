@@ -20,13 +20,36 @@ async function sendEmail(customerEmail, customerName, orderData, client) {
 
   console.log("📨 Sending email to:", customerEmail);
 
-  try {
-   const {
-  orderNumber, tamales, subtotal, tax, tip,
-  total, deliveryDate, deliveryTime, deliveryAddress
+ try{ 
+  const {
+  orderNumber,
+  subtotal, tax, tip = 0, total,
+  deliveryDate, deliveryTime, deliveryAddress
 } = orderData;
 
+
+const items = orderData.items || [];
+
+
 const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside deliveryAddress
+
+
+const formatItemSection = (items = []) => {
+      if (!items.length) return '';
+      return `
+        
+        <table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
+          ${items.map(item => `
+            <tr>
+              <td style="padding: 4px 0">${item.quantity}x ${item.name}</td>
+              <td style="text-align: right; padding: 4px 0">
+                $${(item.basePrice * item.quantity).toFixed(2)}
+              </td>
+            </tr>
+          `).join("")}
+        </table>
+      `;
+    };
 
 
     const orderSummary = `
@@ -45,44 +68,30 @@ const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside delive
           style="height: 40px; display: block; margin-bottom: 20px"
         />
 
-        <p style="margin: 10px 0">
+        <p style="margin: 5px 0">
           <strong>Order #: ${orderData.orderNumber}</strong>
         </p>
 
         <!-- Customer Info -->
-        <p style="color: #9d0759"><strong>Customer Information</strong></p>
-        <table style="width: 100%; margin-bottom: 20px">
+        <h2 style="color: #9d0759">Customer Information</h2>
+        <table style="width: 100%; margin-bottom: 5px">
           <tr>
-            <td style="padding: 2px 0">${customerName}</td>
+            <td style="padding: 1px 0">${customerName}</td>
           </tr>
           <tr>
             <td style="padding: 2px 0">${customerEmail}</td>
           </tr>
           <tr>
-            <td style="padding: 2px 0">${orderData.customerPhone || "N/A"}</td>
+            <td style="padding: 1px 0">${orderData.customerPhone || "N/A"}</td>
           </tr>
         </table>
 
-        <!-- Order Details Section First -->
-        <p style="color: #9d0759"><strong>Order Summary</strong></p>
-        <table
-          style="
-            width: 100%;
-            font-family: sans-serif;
-            font-size: 14px;
-            margin-bottom: 20px;
-          "
-          cellpadding="0"
-          cellspacing="0"
-        >
-          ${tamales.map(tamale => `
-          <tr>
-            <td style="padding: 4px 0">${tamale.quantity}x ${tamale.name}</td>
-            <td style="text-align: right; padding: 4px 0">
-              $${(tamale.basePrice * tamale.quantity).toFixed(2)}
-            </td>
-          </tr>
-          `).join("")}
+       <!-- Order Details Section First -->
+<h2 style="color: #9d0759">Order Summary</h2>
+
+${formatItemSection(items)}
+
+<table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
           <tr>
             <td colspan="2"><hr style="border-top: 1px solid #ccc" /></td>
           </tr>
@@ -115,8 +124,8 @@ const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside delive
         
 
         <!-- Delivery Info -->
-        <p style="color: #9d0759"><strong>Delivery Details</strong></p>
-        <table style="width: 100%; margin-bottom: 20px">
+        <h2 style="color: #9d0759">Delivery Details</h2>
+        <table style="width: 100%; margin-bottom: 10px">
           <tr>
             <td style="padding: 4px 0"><strong>Delivery Date</strong>: ${deliveryDate}</td>
           </tr>

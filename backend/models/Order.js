@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
+const itemSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  quantity: { type: Number, required: true },
+  basePrice: { type: Number, required: true },
+  unit: { type: String },        // Optional (e.g. "dozen", "x", "large")
+  size: { type: String },        // Optional for sides like "Small", "Large"
+  category: { type: String },    // Optional if you want to know: tamale, drink, etc.
+});
+
 const orderSchema = new mongoose.Schema({
   orderNumber: { type: String, required: true, unique: true },
-  tamales: [
-    {
-      name: { type: String, required: true },
-      quantity: { type: Number, required: true },
-    }
-  ],
+  items: [itemSchema], 
   subtotal: { type: Number, required: true },
   tax: { type: Number, required: true },
   tip: { type: Number, required: false },
