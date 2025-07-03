@@ -7,6 +7,7 @@ const tenantConfigs = require("./config/tenantConfigs");
 const paymentRoutes = require("./routes/paymentRoutes");
 const contactRoutes = require("./routes/contactRoutes"); // ✅ New
 const deliveryFeeRoutes = require("./routes/deliveryFeeRoutes");
+const orderRoutes = require("./routes/orderRoutes"); // ✅ NEW
 
 const app = express();
 const isProduction = process.env.NODE_ENV === "production";
@@ -53,6 +54,7 @@ app.use(express.json());
 app.use('/api', paymentRoutes); // ✅
 app.use('/api', contactRoutes);   // /api/contact/:client
 app.use("/api", deliveryFeeRoutes); // /api/delivery-fee
+app.use("/api", orderRoutes); // ✅ Matches /api/:client/orders
 
 
 

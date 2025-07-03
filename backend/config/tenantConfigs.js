@@ -24,6 +24,12 @@ const tenantConfigs = {
     BUSINESS_ADDRESS: process.env.RRICURA_BUSINESS_ADDRESS,
 
     },
+
+  dashboard: {
+    FRONTEND_URL_PRODUCTION: process.env.DASHBOARD_FRONTEND_URL_PRODUCTION,
+  FRONTEND_URL_DEVELOPMENT: process.env.DASHBOARD_FRONTEND_URL_DEVELOPMENT,
+  MONGO_URI: "", // stays empty
+    },
   };
   
   module.exports = tenantConfigs;
