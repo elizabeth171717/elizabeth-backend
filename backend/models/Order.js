@@ -32,6 +32,11 @@ const orderSchema = new mongoose.Schema({
     distanceMiles: { type: Number },
     fee: { type: Number, required: true }, // ✅ moved here
   },
+   // ✅ Add this:
+    status: {
+      type: String,
+      default: "Pending",
+    },
   createdAt: {
     type: Date,
     default: Date.now,

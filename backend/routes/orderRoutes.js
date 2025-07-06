@@ -42,4 +42,35 @@ if (email) {
   }
 });
 
+router.patch("/:client/orders/:id/status", async (req, res) => {
+  const { client, id } = req.params;
+  const { status } = req.body;
+
+  if (!status) {
+    return res.status(400).json({ message: "Status is required." });
+  }
+
+  try {
+    const db = await getTenantDB(client);
+    const Order = db.model("Order", orderSchema);
+
+    const updatedOrder = await Order.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    res.json(updatedOrder);
+  } catch (error) {
+    console.error("❌ Error updating order status:", error);
+    res.status(500).json({ message: "Failed to update order status." });
+  }
+});
+
+
+
 module.exports = router;
