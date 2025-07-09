@@ -34,22 +34,30 @@ const items = orderData.items || [];
 const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside deliveryAddress
 
 
-const formatItemSection = (items = []) => {
-      if (!items.length) return '';
-      return `
+
+    const formatItemSection = (items = []) => {
+  if (!items.length) return '';
+  return `
+    <table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
+      ${items.map(item => {
+        // Dynamically build item label
+        const unitLabel = item.unit ? `${item.quantity} ${item.unit}` : `${item.quantity}x`;
+        const sizeLabel = item.size ? `${item.size} ` : "";
+        const itemLabel = `${unitLabel} ${sizeLabel}${item.name}`;
         
-        <table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
-          ${items.map(item => `
-            <tr>
-              <td style="padding: 4px 0">${item.quantity}x ${item.name}</td>
-              <td style="text-align: right; padding: 4px 0">
-                $${(item.basePrice * item.quantity).toFixed(2)}
-              </td>
-            </tr>
-          `).join("")}
-        </table>
-      `;
-    };
+        return `
+          <tr>
+            <td style="padding: 4px 0">${itemLabel}</td>
+            <td style="text-align: right; padding: 4px 0">
+              $${(item.basePrice * item.quantity).toFixed(2)}
+            </td>
+          </tr>
+        `;
+      }).join("")}
+    </table>
+  `;
+};
+
 
 
     const orderSummary = `
@@ -74,12 +82,12 @@ const formatItemSection = (items = []) => {
 
         <!-- Customer Info -->
         <h2 style="color: #9d0759">Customer Information</h2>
-        <table style="width: 100%; margin-bottom: 5px">
+        <table style="width: 100%; margin-bottom: 3px">
           <tr>
             <td style="padding: 1px 0">${customerName}</td>
           </tr>
           <tr>
-            <td style="padding: 2px 0">${customerEmail}</td>
+            <td>${customerEmail}</td>
           </tr>
           <tr>
             <td style="padding: 1px 0">${orderData.customerPhone || "N/A"}</td>

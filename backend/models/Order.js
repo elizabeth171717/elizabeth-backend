@@ -15,6 +15,14 @@ const orderSchema = new mongoose.Schema({
   subtotal: { type: Number, required: true },
   tax: { type: Number, required: true },
   tip: { type: Number, required: false },
+  discountAmount: {
+  type: Number,
+  default: 0,
+},
+appliedPromoCode: {
+  type: String,
+  default: null,
+},
   total: { type: Number, required: true },
   customerName: { type: String, required: true },
   customerEmail: { type: String, required: true },
