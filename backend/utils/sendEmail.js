@@ -35,16 +35,24 @@ const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside delive
 
 
 
-    const formatItemSection = (items = []) => {
+const formatItemSection = (items = []) => {
   if (!items.length) return '';
   return `
     <table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
       ${items.map(item => {
-        // Dynamically build item label
-        const unitLabel = item.unit ? `${item.quantity} ${item.unit}` : `${item.quantity}x`;
-        const sizeLabel = item.size ? `${item.size} ` : "";
-        const itemLabel = `${unitLabel} ${sizeLabel}${item.name}`;
-        
+        let labelStart;
+
+        // ✅ Prefer size first, then unit, fallback to x
+        if (item.size) {
+          labelStart = `${item.quantity} ${item.size}`;        // e.g., "1 Small"
+        } else if (item.unit) {
+          labelStart = `${item.quantity} ${item.unit}`;        // e.g., "1 dozen"
+        } else {
+          labelStart = `${item.quantity}x`;                    // fallback: "1x"
+        }
+
+        const itemLabel = `${labelStart} ${item.name}`;
+
         return `
           <tr>
             <td style="padding: 4px 0">${itemLabel}</td>
@@ -59,8 +67,7 @@ const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside delive
 };
 
 
-
-    const orderSummary = `
+const orderSummary = `
       <div
         style="
           font-family: sans-serif;
