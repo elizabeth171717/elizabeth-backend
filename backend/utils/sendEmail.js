@@ -37,27 +37,44 @@ const deliveryFee = deliveryAddress?.fee || 0; // ✅ Pull it from inside delive
 
 const formatItemSection = (items = []) => {
   if (!items.length) return '';
+
+  // Reuse your description logic
+  const getItemDescription = (item) => {
+    if (item.filling) {
+      let description = `${item.filling} tamale`;
+      if (item.wrapper) description += ` - ${item.wrapper}`;
+      if (item.sauce && item.sauce !== "None") description += ` - ${item.sauce} sauce`;
+      if (item.vegOil) description += " - Veggie Oil";
+      if (item.fruit) description += " - with Fruit";
+      return description;
+    }
+    if (item.name) return item.name;
+    return "Custom item";
+  };
+
   return `
     <table style="width: 100%; font-size: 14px;" cellpadding="0" cellspacing="0">
       ${items.map(item => {
         let labelStart;
 
-        // ✅ Prefer size first, then unit, fallback to x
         if (item.size) {
-          labelStart = `${item.quantity} ${item.size}`;        // e.g., "1 Small"
+          labelStart = `${item.quantity} ${item.size}`;
         } else if (item.unit) {
-          labelStart = `${item.quantity} ${item.unit}`;        // e.g., "1 dozen"
+          labelStart = `${item.quantity} ${item.unit}`;
         } else {
-          labelStart = `${item.quantity}x`;                    // fallback: "1x"
+          labelStart = `${item.quantity}`;
         }
 
-        const itemLabel = `${labelStart} ${item.name}`;
+        const itemLabel = `${labelStart} ${getItemDescription(item)}`;
+
+        // Make sure price is a number
+        const price = parseFloat(item.price) || 0;
 
         return `
           <tr>
             <td style="padding: 4px 0">${itemLabel}</td>
             <td style="text-align: right; padding: 4px 0">
-              $${(item.basePrice * item.quantity).toFixed(2)}
+              $${(price * item.quantity).toFixed(2)}
             </td>
           </tr>
         `;
@@ -91,7 +108,7 @@ const orderSummary = `
         <h2 style="color: #9d0759">Customer Information</h2>
         <table style="width: 100%; margin-bottom: 3px">
           <tr>
-            <td style="padding: 1px 0">${customerName}</td>
+            <td>${customerName}</td>
           </tr>
           <tr>
             <td>${customerEmail}</td>
