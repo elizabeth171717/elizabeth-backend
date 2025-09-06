@@ -20,7 +20,8 @@ const orderSchema = new mongoose.Schema({
   subtotal: { type: Number, required: true },
   tax: { type: Number, required: true },
   tip: { type: Number, required: false },
-  
+  discount: { type: Number },   // how much was taken off
+coupon: { type: String },     // which code was used
 
   total: { type: Number, required: true },
   customerName: { type: String, required: true },
