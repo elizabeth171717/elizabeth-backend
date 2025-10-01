@@ -29,7 +29,18 @@ const tenantConfigs = {
     FRONTEND_URL_PRODUCTION: process.env.DASHBOARD_FRONTEND_URL_PRODUCTION,
   FRONTEND_URL_DEVELOPMENT: process.env.DASHBOARD_FRONTEND_URL_DEVELOPMENT,
   MONGO_URI: "", // stays empty
+  JWT_SECRET: process.env.DASHBOARD_JWT_SECRET,
     },
+
+  
+
+ universalmenu: {
+    FRONTEND_URL_PRODUCTION: process.env.MENU_TUNNEL_FRONTEND_URL_PRODUCTION,
+  FRONTEND_URL_DEVELOPMENT: process.env.MENU_TUNNEL_FRONTEND_URL_DEVELOPMENT,
+  MONGO_URI: process.env.MENU_TUNNEL_MONGO_URI, // stays empty
+ 
+    },
+
   };
   
   module.exports = tenantConfigs;

@@ -24,7 +24,8 @@ async function sendEmail(customerEmail, customerName, orderData, client) {
   const {
   orderNumber,
   subtotal, tax, tip = 0, total,
-  deliveryDate, deliveryTime, deliveryAddress
+  deliveryDate, deliveryTime, deliveryAddress, discount = 0,  // ✅ default to 0 so it won’t break
+  coupon = ""    // ✅ default to empty string
 } = orderData;
 
 
@@ -129,16 +130,17 @@ ${formatItemSection(items)}
   </tr>
 
   <!-- ✅ Show original subtotal if discount exists -->
-  <% if (discount > 0) { %>
+${discount > 0 ? `
   <tr>
     <td><strong>Subtotal (before discount):</strong></td>
     <td style="text-align: right"><s>$${(subtotal + discount).toFixed(2)}</s></td>
   </tr>
   <tr>
-    <td><strong>Discount (${coupon}):</strong></td>
+    <td><strong>Discount (${coupon || "Promo"}):</strong></td>
     <td style="text-align: right; color: green">- $${discount.toFixed(2)}</td>
   </tr>
-  <% } %>
+` : ""}
+
 
   <!-- ✅ Always show discounted subtotal -->
   <tr>
