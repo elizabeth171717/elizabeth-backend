@@ -43,6 +43,14 @@ exports.uploadImage = (req, res) => {
         return res.status(400).json({ error: "Invalid tenant" });
       }
 
+      console.log("🧩 Cloudinary env check:", {
+  client,
+  cloud_name: tenantConfig.CLOUDINARY_CLOUD_NAME,
+  hasKey: !!tenantConfig.CLOUDINARY_API_KEY,
+  hasSecret: !!tenantConfig.CLOUDINARY_API_SECRET,
+});
+
+
       // ✅ Configure Cloudinary dynamically per tenant
       cloudinary.config({
         cloud_name: tenantConfig.CLOUDINARY_CLOUD_NAME,
