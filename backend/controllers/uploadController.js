@@ -3,7 +3,9 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const cloudinary = require("cloudinary").v2;
-const tenants = require("../config/tenantConfigs"); // adjust path if needed
+
+const tenantConfigs = require("../config/tenantConfigs"); // ✅ consistent naming
+
 
 
 // ✅ Multer setup (temporary local storage)
@@ -34,7 +36,8 @@ exports.uploadImage = (req, res) => {
     try {
       // ✅ Get tenant/client config
       const client = req.params.client;
-      const tenantConfig = tenants[client];
+    
+       const tenantConfig = tenantConfigs[client]; // ✅ consistent variable use
 
       if (!tenantConfig) {
         return res.status(400).json({ error: "Invalid tenant" });
