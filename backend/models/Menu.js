@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 
-
 const ModifierSchema = new mongoose.Schema({
-  id: { type: String, required: true },   // frontend-generated id
+  id: { type: String, required: true }, // frontend-generated id
   name: { type: String, required: true },
   price: { type: Number, default: 0 },
 });
-
 
 const DishSchema = new mongoose.Schema({
   id: { type: String, required: true }, // frontend-generated id
@@ -14,15 +12,22 @@ const DishSchema = new mongoose.Schema({
   description: { type: String },
   price: { type: Number, required: true },
   image: { type: String }, // base64 string or URL
-  available: { type: Boolean, default: true }, // ✅ available/unavailable toggle
-  visible: { type: Boolean, default: true },   // ✅ show/hide toggle
-  modifiers: [ModifierSchema],                 // ✅ array of modifiers
+  available: { type: Boolean, default: true },
+  visible: { type: Boolean, default: true },
+  modifiers: [ModifierSchema],
+});
+
+const GroupSchema = new mongoose.Schema({
+  id: { type: String, required: true }, // frontend-generated id
+  groupName: { type: String, required: true },
+  items: [DishSchema],
 });
 
 const SectionSchema = new mongoose.Schema({
   id: { type: String, required: true }, // frontend-generated id
   section: { type: String, required: true },
-  items: [DishSchema],
+  items: [DishSchema],      // ungrouped items
+  groups: [GroupSchema],    // new: groups within the section
 });
 
 const MenuSchema = new mongoose.Schema(
@@ -33,5 +38,4 @@ const MenuSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
-module.exports = MenuSchema;  // ✅ export the schema only
+module.exports = MenuSchema;
