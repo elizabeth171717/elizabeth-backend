@@ -15,6 +15,13 @@ const DishSchema = new mongoose.Schema({
   available: { type: Boolean, default: true },
   visible: { type: Boolean, default: true },
   modifiers: [ModifierSchema],
+  customProperties: [
+  {
+    key: { type: String },
+    value: { type: String },
+  },
+],
+
 });
 
 const GroupSchema = new mongoose.Schema({
