@@ -96,7 +96,7 @@ const orderSummary = `
         "
       >
         <img
-          src="http://localhost:5173/logo.png" alt="Rricura Logo"
+          src="https://www.rricuraform.online/logo.png" alt="Rricura Logo"
           style="height: 40px; display: block; margin-bottom: 20px"
         />
 
@@ -195,6 +195,15 @@ ${discount > 0 ? `
   </tr>
 </table>
 
+<!-- Customer Message -->
+${orderData.message ? `
+  <h2 style="color: #9d0759; font-size: 18px; margin-top: 12px;">
+    Message from Customer
+  </h2>
+  <p style="font-size: 15px;">
+    ${orderData.message}
+  </p>
+` : ""}
 
       
 <p style="margin-top: 30px; font-size: 0.9em; color: #666; text-align: center;">
@@ -202,11 +211,7 @@ ${discount > 0 ? `
 </p>
 
 <!-- Links Section -->
-<p style="text-align: center; font-size: 0.9em; margin-top: 10px;">
-  Visit us: 
-  <a href="https://www.rricuratamales.com" 
-     style="color: #9d0759; text-decoration: none; font-weight: bold;">www.rricuratamles.com</a>
-</p>
+
 
 <p style="text-align: center; margin-top: 10px;">
   <a href="https://www.facebook.com/profile.php?id=61566890440038" style="margin: 0 8px; text-decoration: none;">
