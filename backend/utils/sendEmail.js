@@ -25,7 +25,8 @@ async function sendEmail(customerEmail, customerName, orderData, client) {
   orderNumber,
   subtotal, tax, tip = 0, total,
   deliveryDate, deliveryTime, deliveryAddress, discount = 0,  // ✅ default to 0 so it won’t break
-  coupon = ""    // ✅ default to empty string
+  coupon = "",    // ✅ default to empty string
+  customerMessage = ""   // ✅ ADD THIS
 } = orderData;
 
 
@@ -195,15 +196,19 @@ ${discount > 0 ? `
   </tr>
 </table>
 
-<!-- Customer Message -->
-${orderData.message ? `
-  <h2 style="color: #9d0759; font-size: 18px; margin-top: 12px;">
-    Message from Customer
-  </h2>
-  <p style="font-size: 15px;">
-    ${orderData.message}
-  </p>
-` : ""}
+${orderData.customerMessage
+  ? `
+    <h2 style="color: #9d0759; font-size: 18px; margin-top: 12px;">
+      Message from Customer
+    </h2>
+    <p style="font-size: 15px;">
+      ${customerMessage}
+    </p>
+  `
+  : ""
+}
+
+
 
       
 <p style="margin-top: 30px; font-size: 0.9em; color: #666; text-align: center;">

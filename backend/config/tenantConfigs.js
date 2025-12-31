@@ -43,6 +43,14 @@ const tenantConfigs = {
  CLOUDINARY_API_SECRET:process.env.MENU_TUNNEL_CLOUDINARY_API_SECRET,
     },
 
+     tamalepos: {
+    FRONTEND_URL_PRODUCTION: process.env.TAMALE_POS_FRONTEND_URL_PRODUCTION,
+  FRONTEND_URL_DEVELOPMENT: process.env.TAMALE_POS_FRONTEND_URL_DEVELOPMENT,
+  MONGO_URI: "", // stays empty
+ 
+    },
+
+
   };
   
   module.exports = tenantConfigs;

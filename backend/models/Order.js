@@ -35,10 +35,12 @@ coupon: { type: String },     // which code was used
     city: { type: String, required: true },
     state: { type: String, required: true },
     zip: { type: String, required: true },
-    instructions: { type: String },
+    
     fullAddress: { type: String },
     distanceMiles: { type: Number },
     fee: { type: Number, required: true }, // ✅ moved here
+    customerMessage: { type: String , required: false},
+
   },
    // ✅ Add this:
     status: {
