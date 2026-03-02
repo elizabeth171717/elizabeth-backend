@@ -14,8 +14,12 @@ const deliveryFeeRoutes = require("./routes/deliveryFeeRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
 const authRoutes = require("./routes/authRoutes");
+
+const anahuacAuthRoutes = require("./routes/anahuacAuthRoutes");
+const anahuacMenuRoutes = require("./routes/anahuacMenuRoutes");
 const universalMenuRoutes = require("./routes/universalMenuRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const getTenantDB = require("./utils/getTenantDB"); // ✅ FIX: add this
 const path = require("path");
 
@@ -73,11 +77,15 @@ app.use("/api", contactRoutes);
 app.use("/api", deliveryFeeRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", portfolioRoutes);
-app.use("/auth", authRoutes);
-app.use("/api", universalMenuRoutes); // ✅ /api/:client/menu
+
+
 
 app.use("/api", uploadRoutes);
-
+app.use("/api", anahuacMenuRoutes);
+app.use("/api", adminRoutes);
+app.use("/auth", anahuacAuthRoutes);
+app.use("/auth", authRoutes);
+app.use("/api", universalMenuRoutes); // ✅ /api/:client/menu
 
 // --- WS ONLY for universalmenu ---
 const server = http.createServer(app);
