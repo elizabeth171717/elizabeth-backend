@@ -47,7 +47,7 @@ const updateMenu = async (req, res) => {
       req.body,
       {
         new: true,
-        overwrite: true,
+        overwrite: false,
       }
     );
 
@@ -67,4 +67,25 @@ const updateMenu = async (req, res) => {
   }
 };
 
-module.exports = { getMenu, updateMenu };
+const getPublicMenu = async (req, res) => {
+  const { client, slug } = req.params;
+
+  try {
+    const db = await getTenantDB(client);
+    const Menu = db.models.Menu || db.model("Menu", anahuacMenuSchema);
+
+    const menu = await Menu.findOne({ slug });
+
+    if (!menu) {
+      return res.status(404).json({ message: "Menu not found" });
+    }
+
+    return res.json(menu);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error fetching public menu" });
+  }
+};
+
+
+module.exports = { getMenu, updateMenu, getPublicMenu };

@@ -46,6 +46,15 @@ const anahuacMenuSchema = new mongoose.Schema(
     },
 
     restaurantName: { type: String, required: true },
+      // 👇 ADD IT RIGHT HERE
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      index: true
+    },
     sections: [SectionSchema],
   },
   { timestamps: true }

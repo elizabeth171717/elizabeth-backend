@@ -11,6 +11,13 @@ const sampleMenu = require("../data/sampleMenu");
 
 console.log("🔥hi");
 
+const generateSlug = (name) => {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+};
+
 const signup = async (req, res) => {
   const client = req.params.client;
   const { name, restaurantName, email, password } = req.body;
@@ -46,9 +53,20 @@ const signup = async (req, res) => {
     // ✅ CREATE MENU FOR THIS USER (THIS IS THE MISSING PIECE)
  
 
-  await Menu.create({
+
+let baseSlug = generateSlug(newUser.restaurantName);
+let slug = baseSlug;
+let counter = 1;
+
+while (await Menu.findOne({ slug })) {
+  slug = `${baseSlug}-${counter}`;
+  counter++;
+}
+
+await Menu.create({
   owner: newUser._id,
   restaurantName: newUser.restaurantName,
+  slug,
   sections: sampleMenu.sections,
 });
 
