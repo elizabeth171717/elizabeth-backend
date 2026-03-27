@@ -97,7 +97,7 @@ const orderSummary = `
         "
       >
         <img
-          src="https://www.rricuraform.online/logo.png" alt="Rricura Logo"
+          src="https://www.rricuratamales.com/logo.png" alt="Rricura Logo"
           style="height: 40px; display: block; margin-bottom: 20px"
         />
 
