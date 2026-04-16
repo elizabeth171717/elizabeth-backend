@@ -14,6 +14,9 @@ const DishSchema = new mongoose.Schema({
   image: { type: String }, // base64 string or URL
   available: { type: Boolean, default: true },
   visible: { type: Boolean, default: true },
+    // ✅ ADD THESE TWO
+  remaining: { type: Number, default: 0 },
+  tags: { type: [String], default: [] },
   modifiers: [ModifierSchema],
   customProperties: [
   {

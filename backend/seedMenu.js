@@ -5,23 +5,27 @@ const anahuacMenuSchema = require("./models/AnahuacMenu");
 const sampleMenu = require("./data/sampleMenu");
 
 (async () => {
-  try {
+   try {
     const db = await getTenantDB("anahuac");
 
-    // 🔥 FORCE REMOVE OLD MODEL
+    // 🔥 FIX model overwrite issue
     if (db.models.Menu) {
       delete db.models.Menu;
     }
 
     const Menu = db.model("Menu", anahuacMenuSchema);
 
-    await Menu.deleteMany({});
+    console.log("DB NAME:", db.name);
 
-    // ✅ FORCE restaurantName SO IT NEVER BLOCKS
-    await Menu.create({
-      restaurantName: sampleMenu.restaurantName || "Sample Menu",
-      sections: sampleMenu.sections || [],
-    });
+   
+    await Menu.deleteOne({ slug: "sample-menu" });
+
+await Menu.create({
+  restaurantName: sampleMenu.restaurantName,
+  sections: sampleMenu.sections,
+  slug: "sample-menu",
+  isTemplate: true,
+});
 
     console.log("✅ Sample menu inserted for tenant: anahuac");
     process.exit();

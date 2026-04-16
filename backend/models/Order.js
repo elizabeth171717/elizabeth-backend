@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
   tip: { type: Number, required: false },
   discount: { type: Number },   // how much was taken off
 coupon: { type: String },     // which code was used
-
+orderType: { type: String },
   total: { type: Number, required: true },
   customerName: { type: String, required: true },
   customerEmail: { type: String, required: true },

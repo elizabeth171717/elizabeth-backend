@@ -12,50 +12,48 @@
           name: "Spring Rolls",
           description: "Crispy rolls stuffed with vegetables.",
           price: 5.99,
-          image: "https://source.unsplash.com/400x300/?spring-rolls",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484370/springrolls_gbmcgi.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [
             { id: "m1", name: "Extra Sauce", price: 0.5 },
-            { id: "m2", name: "Spicy", price: 0 },
+            
           ],
- customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+ customProperties: [],
+ tags: ["vegetarian"],
         },
         {
           id: "ap2",
           name: "Garlic Bread",
           description: "Toasted bread with garlic and herbs.",
           price: 4.49,
-          image: "https://source.unsplash.com/400x300/?garlic-bread",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484369/garlicbread_gjcbbq.jpg",
           available: false,
           visible: true,
+          remaining: 2,
           modifiers: [],
-          
- customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+         
+ customProperties: [], // ✅ this is the dynamic part
+ tags: ["vegetarian", "mild"],
+  
         },
         {
           id: "ap3",
           name: "Bruschetta",
           description: "Grilled bread with tomato and basil.",
           price: 6.25,
-          image: "https://source.unsplash.com/400x300/?bruschetta",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/w_500,f_auto,q_auto/upload/v1775484369/bruschetta_ubejjs.jpg",
           available: true,
           visible: false,
-          modifiers: [],
+          remaining: 0,
+          modifiers: [
+              { id: "m2", name: "Add Balsamic", price: 1 },
+            { id: "m3", name: "Add Parmesan", price: 1.5 },
+          ],
           
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: ["vegetarian"],
         },
       ],
     },
@@ -69,57 +67,52 @@
           name: "Grilled Chicken",
           description: "Juicy grilled chicken with herbs.",
           price: 12.99,
-          image: "https://source.unsplash.com/400x300/?grilled-chicken",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484369/w_500,f_auto,q_auto/grillchickenbreast_iqocei.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [
-            { id: "m3", name: "Add Rice", price: 2 },
-            { id: "m4", name: "Extra Veggies", price: 1.5 },
+            { id: "m4", name: "Add Rice", price: 2 },
+            { id: "m5", name: "Extra Veggies", price: 5 },
+             { id: "m6", name: "Add Beans", price: 2 },
           ],
           
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
         },
         {
           id: "mn2",
           name: "Veggie Pasta",
           description: "Pasta tossed with fresh vegetables.",
           price: 10.49,
-          image: "https://source.unsplash.com/400x300/?pasta",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484368/veggiepasta_pwemcz.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [
-            { id: "m5", name: "Gluten-Free Pasta", price: 1 },
+            { id: "m7", name: "Make itGluten-Free Pasta", price: 3 },
           ],
           
-customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+customProperties: [],
+tags: ["vegetarian"],
         },
         {
           id: "mn3",
           name: "Cheeseburger",
           description: "Beef patty with melted cheese and fries.",
           price: 11.99,
-          image: "https://source.unsplash.com/400x300/?burger",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484368/cheeseburguer_h1zbpf.jpg",
           available: true,
           visible: true,
+           remaining: 5, // ✅ ONLY 5 LEFT
           modifiers: [
-            { id: "m6", name: "Add Bacon", price: 2 },
-            { id: "m7", name: "Extra Cheese", price: 1 },
-            { id: "m8", name: "No Onions", price: 0 },
+            { id: "m8", name: "Add Bacon", price: 2 },
+            { id: "m9", name: "Extra Cheese", price: 1 },
+            { id: "m10", name: "No Onions", price: 0 },
           ],
           
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
         },
       ],
     },
@@ -133,54 +126,48 @@ customProperties: [  // ✅ this is the dynamic part
           name: "Chocolate Cake",
           description: "Rich and moist chocolate cake.",
           price: 6.99,
-          image: "https://source.unsplash.com/400x300/?chocolate-cake",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484367/chocolatecake_wgg6xo.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [],
           
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: ["vegan"],
         },
         {
           id: "ds2",
           name: "Cheesecake",
           description: "Creamy cheesecake with berry topping.",
           price: 7.49,
-          image: "https://source.unsplash.com/400x300/?cheesecake",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484367/cheesecake_d0d2zc.jpg",
           available: true,
           visible: true,
+          remaining: 2, // ✅ LOW STOCK
           modifiers: [
-            { id: "m9", name: "Strawberry Topping", price: 1 },
-            { id: "m10", name: "Chocolate Syrup", price: 1 },
+            { id: "m11", name: "Strawberry Topping", price: 1 },
+            { id: "m12", name: "Chocolate Syrup", price: 1 },
           ],
           
- customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+ customProperties: [],
+ tags: [],
         },
         {
           id: "ds3",
           name: "Ice Cream",
           description: "Two scoops of vanilla or chocolate.",
           price: 4.99,
-          image: "https://source.unsplash.com/400x300/?ice-cream",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484367/icecream_tf1pha.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [
-            { id: "m11", name: "Add Sprinkles", price: 0.5 },
-            { id: "m12", name: "Whipped Cream", price: 0.75 },
+            { id: "m13", name: "Add Sprinkles", price: 0.5 },
+            { id: "m14", name: "Whipped Cream", price: 0.75 },
           ],
           
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
         },
       ],
     },
@@ -196,33 +183,37 @@ customProperties: [  // ✅ this is the dynamic part
               id: "drA1",
               name: "Atole de Elote",
               description: "Sweet corn-based traditional atole.",
-              price: 3.99,
-              image: "https://source.unsplash.com/400x300/?corn-drink",
+              price: 0,
+              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484366/atoledeelote_odesd3.jpg",
               available: true,
               visible: true,
-              modifiers: [],
+              remaining: 0,
+              modifiers: [
+                { id: "m15", name: "Small", price: 4.49 },
+                { id: "m16", name: "Medium", price: 6 },
+            { id: "m17", name: "Large", price: 8 },
+              ],
               
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
             },
             {
               id: "drA2",
               name: "Champurrado",
               description: "Thick Mexican chocolate atole.",
-              price: 4.49,
-              image: "https://source.unsplash.com/400x300/?champurrado",
+              price: 0,
+              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484366/champurrado_tn8vya.jpg",
               available: true,
               visible: true,
-              modifiers: [],
+              remaining: 0,
+              modifiers: [
+                { id: "m18", name: "Small", price: 4.49 },
+                 { id: "m19", name: "Medium", price: 6 },
+            { id: "m20", name: "Large", price: 8 },
+              ],
               
- customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+ customProperties: [],
+ tags: [],
             },
           ],
         },
@@ -234,33 +225,37 @@ customProperties: [  // ✅ this is the dynamic part
               id: "drF1",
               name: "Horchata",
               description: "Rice and cinnamon drink.",
-              price: 2.99,
-              image: "https://source.unsplash.com/400x300/?horchata",
+              price: 0,
+              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484365/orchata_m1blz7.jpg",
               available: true,
               visible: true,
-              modifiers: [],
+              remaining: 0,
+              modifiers: [
+                { id: "m21", name: "Small", price: 2.99 },
+                { id: "m22", name: "Medium", price: 4 },
+            { id: "m23", name: "Large", price: 6 },
+              ],
               
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
             },
             {
               id: "drF2",
               name: "Jamaica",
               description: "Hibiscus flower tea served cold.",
-              price: 2.99,
-              image: "https://source.unsplash.com/400x300/?jamaica-drink",
+              price: 0,
+              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484365/agua_de_jamaica_zrvbjb.jpg",
               available: true,
               visible: true,
-              modifiers: [],
+              remaining: 0,
+              modifiers: [
+                { id: "m24", name: "Small", price: 2.99 },
+                   { id: "m25", name: "Medium", price: 4 },
+            { id: "m26", name: "Large", price: 6 },
+              ],
               
-  customProperties: [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+  customProperties: [],
+  tags: [],
             },
           ],
         },
@@ -271,19 +266,20 @@ customProperties: [  // ✅ this is the dynamic part
           name: "Coffee",
           description: "Hot brewed coffee.",
           price: 2.99,
-          image: "https://source.unsplash.com/400x300/?coffee",
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/w_500,f_auto,q_auto/v1775484365/coffe_qt2bhy.jpg",
           available: true,
           visible: true,
+          remaining: 0,
           modifiers: [
-            { id: "m13", name: "Add Milk", price: 0.5 },
-            { id: "m14", name: "Extra Shot", price: 1 },
+            { id: "m27", name: "Add Milk", price: 0.5 },
+            { id: "m28", name: "Extra Shot", price: 1 },
           ],
           
  customProperties : [  // ✅ this is the dynamic part
-    { key: "Filling", value: "Chicken" },
-    { key: "Wrapper", value: "Corn Husk" },
-    { key: "Sauce", value: "Green" },
-  ]
+    { key: "Ground", value: "Decaf" },
+    
+  ],
+  tags: [],
         },
       ],
     },
