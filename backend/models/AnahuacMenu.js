@@ -15,7 +15,7 @@ const DishSchema = new mongoose.Schema({
   available: { type: Boolean, default: true },
   visible: { type: Boolean, default: true },
     // ✅ ADD THESE TWO
-  remaining: { type: Number, default: 0 },
+  remaining: { type: Number, default: null },
   tags: { type: [String], default: [] },
   modifiers: [ModifierSchema],
   customProperties: [
