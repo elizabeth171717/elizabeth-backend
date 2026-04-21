@@ -15,7 +15,7 @@
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448516/rinfoto0-spring-rolls-1755962_1920_w4pwrg.jpg",
           available: true,
           visible: true,
-          remaining: 0,
+          remaining: null,
           modifiers: [
             { id: "m1", name: "Extra Sauce", price: 0.5 },
             
@@ -108,7 +108,7 @@ tags: ["vegetarian"],
           modifiers: [
             { id: "m8", name: "Add Bacon", price: 2 },
             { id: "m9", name: "Extra Cheese", price: 1 },
-            { id: "m10", name: "No Onions", price: 0 },
+            { id: "m10", name: "Double Party", price: 5 },
           ],
           
   customProperties: [],
@@ -272,7 +272,7 @@ tags: ["vegetarian"],
           remaining: null,
           modifiers: [
             { id: "m27", name: "Add Milk", price: 0.5 },
-            { id: "m28", name: "Extra Shot", price: 1 },
+            { id: "m28", name: "Add Flavor", price: 1 },
           ],
           
  customProperties : [  // ✅ this is the dynamic part
