@@ -17,7 +17,7 @@ const authRoutes = require("./routes/authRoutes");
 
 const anahuacAuthRoutes = require("./routes/anahuacAuthRoutes");
 const anahuacMenuRoutes = require("./routes/anahuacMenuRoutes");
-const universalMenuRoutes = require("./routes/universalMenuRoutes");
+
 const uploadRoutes = require("./routes/uploadRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const getTenantDB = require("./utils/getTenantDB"); // ✅ FIX: add this
@@ -83,9 +83,9 @@ app.use("/api", portfolioRoutes);
 app.use("/api", uploadRoutes);
 app.use("/api", anahuacMenuRoutes);
 app.use("/api", adminRoutes);
+
 app.use("/auth", anahuacAuthRoutes);
 app.use("/auth", authRoutes);
-app.use("/api", universalMenuRoutes); // ✅ /api/:client/menu
 
 // --- WS ONLY for universalmenu ---
 const server = http.createServer(app);
@@ -94,23 +94,6 @@ const wss = new WebSocketServer({ server });
 // ✅ Initialize broadcast helper with WebSocket server
 initBroadcast(wss);
 
-// --- Load initial menu from DB ---
-const loadInitialMenu = async () => {
-  try {
-    const db = await getTenantDB("universalmenu");
-    const Menu = db.models.Menu || db.model("Menu", require("./models/Menu"));
-    const menu = await Menu.findOne();
-    if (menu) {
-      // Set initial universalMenuData so new connections get it
-      const { broadcastMenuUpdate } = require("./utils/broadcast");
-      broadcastMenuUpdate(menu);
-      console.log("📡 Initial universal menu loaded for WS");
-    }
-  } catch (err) {
-    console.error("❌ Failed to load initial universal menu:", err);
-  }
-};
-loadInitialMenu();
 
 // --- Handle new WebSocket connections ---
 wss.on("connection", async (ws) => {

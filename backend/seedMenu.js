@@ -22,6 +22,7 @@ const sampleMenu = require("./data/sampleMenu");
 
 await Menu.create({
   restaurantName: sampleMenu.restaurantName,
+    views: sampleMenu.views, // ✅ ADD THIS
   sections: sampleMenu.sections,
   slug: "sample-menu",
   isTemplate: true,

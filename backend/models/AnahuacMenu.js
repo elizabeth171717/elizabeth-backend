@@ -4,60 +4,83 @@ const ModifierSchema = new mongoose.Schema({
   id: { type: String, required: true }, // frontend-generated id
   name: { type: String, required: true },
   price: { type: Number, default: 0 },
-}, { _id: false }); // _id: false to prevent automatic _id generation for modifiers
+}, { _id: false });
+
+// ✅ NEW
+const DisplaySettingSchema = new mongoose.Schema({
+  visible: { type: Boolean, default: true },
+  available: { type: Boolean, default: true },
+  remaining: { type: Number, default: null },
+}, { _id: false });
+
+// ✅ NEW
+const ViewSchema = new mongoose.Schema({
+  id: { type: String, required: true },
+  name: { type: String, required: true },
+}, { _id: false });
 
 const DishSchema = new mongoose.Schema({
-  id: { type: String, required: true }, // frontend-generated id
+  id: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String },
   price: { type: Number, required: true },
-  image: { type: String }, // base64 string or URL
-  available: { type: Boolean, default: true },
-  visible: { type: Boolean, default: true },
-    // ✅ ADD THESE TWO
-  remaining: { type: Number, default: null },
-  tags: { type: [String], default: [] },
-  modifiers: [ModifierSchema],
-  customProperties: [
-  {
-    key: { type: String },
-    value: { type: String },
-  },
-],
+  image: { type: String },
 
-}, { _id: false }); // _id: false to prevent automatic _id generation for dishes
+  // ✅ REPLACED OLD available/visible/remaining
+  displaySettings: {
+    type: Map,
+    of: DisplaySettingSchema,
+    default: {},
+  },
+
+  tags: { type: [String], default: [] },
+
+  modifiers: [ModifierSchema],
+
+  customProperties: [
+    {
+      key: { type: String },
+      value: { type: String },
+    },
+  ],
+
+}, { _id: false });
 
 const GroupSchema = new mongoose.Schema({
-  id: { type: String, required: true }, // frontend-generated id
+  id: { type: String, required: true },
   groupName: { type: String, required: true },
   items: [DishSchema],
-}, { _id: false }); // _id: false to prevent automatic _id generation for groups
+}, { _id: false });
 
 const SectionSchema = new mongoose.Schema({
-  id: { type: String, required: true }, // frontend-generated id
+  id: { type: String, required: true },
   section: { type: String, required: true },
-  items: [DishSchema],      // ungrouped items
-  groups: [GroupSchema],    // new: groups within the section
-}, { _id: false }); // _id: false to prevent automatic _id generation for sections
+  items: [DishSchema],
+  groups: [GroupSchema],
+}, { _id: false });
 
 const anahuacMenuSchema = new mongoose.Schema(
-{
+  {
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      index: true, // optional but recommended for fast lookups
+      index: true,
     },
 
     restaurantName: { type: String, required: true },
-      // 👇 ADD IT RIGHT HERE
+
     slug: {
       type: String,
       required: true,
       unique: true,
       lowercase: true,
       trim: true,
-      index: true
+      index: true,
     },
+
+    // ✅ NEW
+    views: [ViewSchema],
+
     sections: [SectionSchema],
   },
   { timestamps: true }

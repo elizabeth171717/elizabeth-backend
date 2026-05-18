@@ -1,6 +1,24 @@
 
   module.exports = {
   restaurantName: "Sample Restaurant",
+    views: [
+    {
+      id: "website",
+      name: "Website",
+    },
+
+    {
+      id: "pos",
+      name: "POS",
+    },
+
+    {
+      id: "kiosk",
+      name: "Self-Service Kiosk",
+    },
+  ],
+
+
   sections: [
     {
       id: "1",
@@ -13,9 +31,25 @@
           description: "Crispy rolls stuffed with vegetables.",
           price: 5.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448516/rinfoto0-spring-rolls-1755962_1920_w4pwrg.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+          
+          displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 2,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m1", name: "Extra Sauce", price: 0.5 },
             
@@ -29,9 +63,26 @@
           description: "Toasted bread with garlic and herbs.",
           price: 4.49,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448890/waldemar-brandt-zevnVcUyiJg-unsplash_xpp6tm.jpg",
-          available: false,
-          visible: true,
-          remaining: 2,
+        
+ displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
+
           modifiers: [],
          
  customProperties: [], // ✅ this is the dynamic part
@@ -44,9 +95,25 @@
           description: "Grilled bread with tomato and basil.",
           price: 6.25,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448686/pexels-shameel-mukkath-3421394-5639411_iptioh.jpg",
-          available: true,
-          visible: false,
-          remaining: 0,
+         
+           displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
               { id: "m2", name: "Add Balsamic", price: 1 },
             { id: "m3", name: "Add Parmesan", price: 1.5 },
@@ -68,9 +135,25 @@
           description: "Juicy grilled chicken with herbs.",
           price: 12.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449061/sam-moghadam-VpOpy6QrDrs-unsplash_nb9c4e.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+          
+ displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m4", name: "Add Rice", price: 2 },
             { id: "m5", name: "Extra Veggies", price: 5 },
@@ -86,9 +169,25 @@
           description: "Pasta tossed with fresh vegetables.",
           price: 10.49,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449132/abhishek-hajare-_3dTLrMwiW8-unsplash_hhkokz.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+        
+           displaySettings: {
+  website: {
+    visible: false,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m7", name: "Make itGluten-Free Pasta", price: 3 },
           ],
@@ -102,9 +201,25 @@ tags: ["vegetarian"],
           description: "Beef patty with melted cheese and fries.",
           price: 11.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449178/amirali-mirhashemian-pucP6jZSyV4-unsplash_rfan9f.jpg",
-          available: true,
-          visible: true,
-           remaining: 5, // ✅ ONLY 5 LEFT
+          
+            displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 5,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: 5,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: 5,
+  },
+},
           modifiers: [
             { id: "m8", name: "Add Bacon", price: 2 },
             { id: "m9", name: "Extra Cheese", price: 1 },
@@ -127,9 +242,26 @@ tags: ["vegetarian"],
           description: "Rich and moist chocolate cake.",
           price: 6.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449240/braggsdiner-F8RKds2YdqA-unsplash_iobveb.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+         
+
+           displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 2,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [],
           
   customProperties: [],
@@ -141,9 +273,25 @@ tags: ["vegetarian"],
           description: "Creamy cheesecake with berry topping.",
           price: 7.49,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449317/tina-guina-s8_7AqkzCWY-unsplash_usu4fx.jpg",
-          available: true,
-          visible: true,
-          remaining: 2, // ✅ LOW STOCK
+         
+           displaySettings: {
+  website: {
+    visible: false,
+    available: false,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m11", name: "Strawberry Topping", price: 1 },
             { id: "m12", name: "Chocolate Syrup", price: 1 },
@@ -158,9 +306,25 @@ tags: ["vegetarian"],
           description: "Two scoops of vanilla or chocolate.",
           price: 4.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449954/zach-camp-3D0HUHFcRrk-unsplash_nfrfgt.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+         
+           displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 2,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m13", name: "Add Sprinkles", price: 0.5 },
             { id: "m14", name: "Whipped Cream", price: 0.75 },
@@ -185,9 +349,25 @@ tags: ["vegetarian"],
               description: "Sweet corn-based traditional atole.",
               price: 0,
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450635/Receta-para-hacer-atol-de-elote-guatemalteco-1_vvnz82.jpg",
-              available: true,
-              visible: true,
-              remaining: null,
+           
+               displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 5,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
               modifiers: [
                 { id: "m15", name: "Small", price: 4.49 },
                 { id: "m16", name: "Medium", price: 6 },
@@ -203,9 +383,25 @@ tags: ["vegetarian"],
               description: "Thick Mexican chocolate atole.",
               price: 0,
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450492/Atole_xswvh2.jpg",
-              available: true,
-              visible: true,
-              remaining: null,
+             
+               displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 2,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: false,
+    available: false,
+    remaining: null,
+  },
+},
               modifiers: [
                 { id: "m18", name: "Small", price: 4.49 },
                  { id: "m19", name: "Medium", price: 6 },
@@ -227,9 +423,26 @@ tags: ["vegetarian"],
               description: "Rice and cinnamon drink.",
               price: 0,
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450680/887b3523ae2674fb5d1ce9c77eff4d7d_strawberry_horchata_1200_628_n0g8ic.jpg",
-              available: true,
-              visible: true,
-              remaining: null,
+             
+ displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: 2,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
+
               modifiers: [
                 { id: "m21", name: "Small", price: 2.99 },
                 { id: "m22", name: "Medium", price: 4 },
@@ -245,9 +458,25 @@ tags: ["vegetarian"],
               description: "Hibiscus flower tea served cold.",
               price: 0,
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449748/asli-dokuzeylul-oVACw86wCB0-unsplash_zgnykc.jpg",
-              available: true,
-              visible: true,
-              remaining: null,
+             
+               displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
               modifiers: [
                 { id: "m24", name: "Small", price: 2.99 },
                    { id: "m25", name: "Medium", price: 4 },
@@ -267,9 +496,25 @@ tags: ["vegetarian"],
           description: "Hot brewed coffee.",
           price: 2.99,
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449689/nathan-dumlao-6VhPY27jdps-unsplash_niazrd.jpg",
-          available: true,
-          visible: true,
-          remaining: null,
+         
+           displaySettings: {
+  website: {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+
+  "pos": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+   "kiosk": {
+    visible: true,
+    available: true,
+    remaining: null,
+  },
+},
           modifiers: [
             { id: "m27", name: "Add Milk", price: 0.5 },
             { id: "m28", name: "Add Flavor", price: 1 },
