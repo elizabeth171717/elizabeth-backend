@@ -87,30 +87,6 @@ app.use("/api", adminRoutes);
 app.use("/auth", anahuacAuthRoutes);
 app.use("/auth", authRoutes);
 
-// --- WS ONLY for universalmenu ---
-const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
-
-// ✅ Initialize broadcast helper with WebSocket server
-initBroadcast(wss);
-
-
-// --- Handle new WebSocket connections ---
-wss.on("connection", async (ws) => {
-  console.log("🔌 WebSocket client connected (universalmenu)");
-
-  // Send the current menu immediately on connect
-  const { universalMenuData } = require("./utils/broadcast");
-  ws.send(JSON.stringify({ type: "menu-update", data: universalMenuData }));
-
-  ws.on("close", () => {
-    console.log("❌ WebSocket client disconnected (universalmenu)");
-  });
-});
-
-
-
-
 
 // --- Start server ---
 const PORT = process.env.PORT || 5000;

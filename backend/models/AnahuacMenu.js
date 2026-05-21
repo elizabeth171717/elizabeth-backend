@@ -23,8 +23,19 @@ const DishSchema = new mongoose.Schema({
   id: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String },
-  price: { type: Number, required: true },
+
   image: { type: String },
+
+basePrice: {
+  type: Number,
+  default: null,
+},
+
+prices: {
+  type: Map,
+  of: Number,
+  default: {},
+},
 
   // ✅ REPLACED OLD available/visible/remaining
   displaySettings: {
@@ -46,6 +57,36 @@ const DishSchema = new mongoose.Schema({
 
 }, { _id: false });
 
+// ✅ ADD THIS AFTER DishSchema EXISTS
+DishSchema.pre("validate", function(next) {
+
+  const hasBasePrice =
+    this.basePrice !== null &&
+    this.basePrice !== undefined;
+
+  const hasViewPrices =
+    this.prices &&
+    this.prices.size > 0;
+
+  const hasModifierPrices =
+    this.modifiers?.some(
+      (mod) => mod.price > 0
+    );
+
+  if (
+    !hasBasePrice &&
+    !hasViewPrices &&
+    !hasModifierPrices
+  ) {
+    return next(
+      new Error(
+        "Dish must have at least one price source."
+      )
+    );
+  }
+
+  next();
+});
 const GroupSchema = new mongoose.Schema({
   id: { type: String, required: true },
   groupName: { type: String, required: true },

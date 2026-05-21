@@ -29,11 +29,16 @@
           id: "ap1",
           name: "Spring Rolls",
           description: "Crispy rolls stuffed with vegetables.",
-          price: 5.99,
+         
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448516/rinfoto0-spring-rolls-1755962_1920_w4pwrg.jpg",
-          
+          basePrice: 5.99,
+
+  prices: {
+    website: 4,
+    kiosk: 3,
+  },
           displaySettings: {
-  website: {
+  "website": {
     visible: true,
     available: true,
     remaining: 2,
@@ -61,11 +66,16 @@
           id: "ap2",
           name: "Garlic Bread",
           description: "Toasted bread with garlic and herbs.",
-          price: 4.49,
+         
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448890/waldemar-brandt-zevnVcUyiJg-unsplash_xpp6tm.jpg",
-        
+         basePrice: 4.49,
+
+  prices: {
+    website: 4,
+    
+  },
  displaySettings: {
-  website: {
+  "website": {
     visible: true,
     available: true,
     remaining: null,
@@ -93,11 +103,15 @@
           id: "ap3",
           name: "Bruschetta",
           description: "Grilled bread with tomato and basil.",
-          price: 6.25,
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448686/pexels-shameel-mukkath-3421394-5639411_iptioh.jpg",
          
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448686/pexels-shameel-mukkath-3421394-5639411_iptioh.jpg",
+          basePrice: 6.25,
+
+  prices: {
+  
+  },
            displaySettings: {
-  website: {
+  "website": {
     visible: true,
     available: true,
     remaining: null,
@@ -133,11 +147,16 @@
           id: "mn1",
           name: "Grilled Chicken",
           description: "Juicy grilled chicken with herbs.",
-          price: 12.99,
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449061/sam-moghadam-VpOpy6QrDrs-unsplash_nb9c4e.jpg",
           
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449061/sam-moghadam-VpOpy6QrDrs-unsplash_nb9c4e.jpg",
+           basePrice: 12.99,
+
+  prices: {
+   
+    kiosk: 13.99,
+  },
  displaySettings: {
-  website: {
+  "website": {
     visible: true,
     available: true,
     remaining: null,
@@ -167,11 +186,15 @@
           id: "mn2",
           name: "Veggie Pasta",
           description: "Pasta tossed with fresh vegetables.",
-          price: 10.49,
+          
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449132/abhishek-hajare-_3dTLrMwiW8-unsplash_hhkokz.jpg",
-        
+         basePrice: 10.49,
+
+  prices: {
+   pos: 13,
+  },
            displaySettings: {
-  website: {
+  "website": {
     visible: false,
     available: true,
     remaining: null,
@@ -199,9 +222,13 @@ tags: ["vegetarian"],
           id: "mn3",
           name: "Cheeseburger",
           description: "Beef patty with melted cheese and fries.",
-          price: 11.99,
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449178/amirali-mirhashemian-pucP6jZSyV4-unsplash_rfan9f.jpg",
           
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449178/amirali-mirhashemian-pucP6jZSyV4-unsplash_rfan9f.jpg",
+           basePrice: 11.99,
+
+  prices: {
+    
+  },
             displaySettings: {
   website: {
     visible: true,
@@ -240,9 +267,14 @@ tags: ["vegetarian"],
           id: "ds1",
           name: "Chocolate Cake",
           description: "Rich and moist chocolate cake.",
-          price: 6.99,
+       
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449240/braggsdiner-F8RKds2YdqA-unsplash_iobveb.jpg",
-         
+          basePrice: 6.99,
+
+  prices: {
+  
+    kiosk: 5,
+  },
 
            displaySettings: {
   website: {
@@ -271,9 +303,13 @@ tags: ["vegetarian"],
           id: "ds2",
           name: "Cheesecake",
           description: "Creamy cheesecake with berry topping.",
-          price: 7.49,
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449317/tina-guina-s8_7AqkzCWY-unsplash_usu4fx.jpg",
          
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449317/tina-guina-s8_7AqkzCWY-unsplash_usu4fx.jpg",
+          basePrice:7.49,
+
+  prices: {
+   
+  },
            displaySettings: {
   website: {
     visible: false,
@@ -304,9 +340,12 @@ tags: ["vegetarian"],
           id: "ds3",
           name: "Ice Cream",
           description: "Two scoops of vanilla or chocolate.",
-          price: 4.99,
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449954/zach-camp-3D0HUHFcRrk-unsplash_nfrfgt.jpg",
          
+          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449954/zach-camp-3D0HUHFcRrk-unsplash_nfrfgt.jpg",
+          basePrice: 4.99,
+
+  prices: {
+     },
            displaySettings: {
   website: {
     visible: true,
@@ -347,9 +386,14 @@ tags: ["vegetarian"],
               id: "drA1",
               name: "Atole de Elote",
               description: "Sweet corn-based traditional atole.",
-              price: 0,
+              
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450635/Receta-para-hacer-atol-de-elote-guatemalteco-1_vvnz82.jpg",
-           
+             basePrice: null,
+
+  prices: {
+  
+  },
+
                displaySettings: {
   website: {
     visible: true,
@@ -381,9 +425,14 @@ tags: ["vegetarian"],
               id: "drA2",
               name: "Champurrado",
               description: "Thick Mexican chocolate atole.",
-              price: 0,
+            
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450492/Atole_xswvh2.jpg",
-             
+               basePrice: null,
+
+  prices: {
+ 
+  },
+
                displaySettings: {
   website: {
     visible: true,
@@ -421,9 +470,14 @@ tags: ["vegetarian"],
               id: "drF1",
               name: "Horchata",
               description: "Rice and cinnamon drink.",
-              price: 0,
+              
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450680/887b3523ae2674fb5d1ce9c77eff4d7d_strawberry_horchata_1200_628_n0g8ic.jpg",
-             
+               basePrice:null,
+
+  prices: {
+  
+  },
+
  displaySettings: {
   website: {
     visible: true,
@@ -456,9 +510,14 @@ tags: ["vegetarian"],
               id: "drF2",
               name: "Jamaica",
               description: "Hibiscus flower tea served cold.",
-              price: 0,
+              
               image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449748/asli-dokuzeylul-oVACw86wCB0-unsplash_zgnykc.jpg",
-             
+               basePrice: null,
+
+  prices: {
+  
+  },
+
                displaySettings: {
   website: {
     visible: true,
@@ -494,9 +553,14 @@ tags: ["vegetarian"],
           id: "dr3",
           name: "Coffee",
           description: "Hot brewed coffee.",
-          price: 2.99,
+          
           image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449689/nathan-dumlao-6VhPY27jdps-unsplash_niazrd.jpg",
-         
+           basePrice: 2.99,
+
+  prices: {
+   
+  },
+
            displaySettings: {
   website: {
     visible: true,
