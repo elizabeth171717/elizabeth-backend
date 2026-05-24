@@ -67,6 +67,7 @@ await Menu.create({
   owner: newUser._id,
   restaurantName: newUser.restaurantName,
   slug,
+    views: sampleMenu.views,
   sections: sampleMenu.sections,
 });
 

@@ -120,7 +120,11 @@ const anahuacMenuSchema = new mongoose.Schema(
     },
 
     // ✅ NEW
-    views: [ViewSchema],
+  
+    views: {
+  type: [ViewSchema],
+  default: [],
+},
 
     sections: [SectionSchema],
   },

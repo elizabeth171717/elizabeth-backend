@@ -88,6 +88,11 @@ app.use("/auth", anahuacAuthRoutes);
 app.use("/auth", authRoutes);
 
 
+
+
+
+
+
 // --- Start server ---
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
