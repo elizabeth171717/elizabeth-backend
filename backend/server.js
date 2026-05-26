@@ -87,7 +87,43 @@ app.use("/api", adminRoutes);
 app.use("/auth", anahuacAuthRoutes);
 app.use("/auth", authRoutes);
 
+// --- WS ONLY for universalmenu ---
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
 
+// ✅ Initialize broadcast helper with WebSocket server
+initBroadcast(wss);
+// --- Load initial menu from DB ---
+const loadInitialMenu = async () => {
+  try {
+    const db = await getTenantDB("universalmenu");
+    const Menu = db.models.Menu || db.model("Menu", require("./models/Menu"));
+    const menu = await Menu.findOne();
+    if (menu) {
+      // Set initial universalMenuData so new connections get it
+      const { broadcastMenuUpdate } = require("./utils/broadcast");
+      broadcastMenuUpdate(menu);
+      console.log("📡 Initial universal menu loaded for WS");
+    }
+  } catch (err) {
+    console.error("❌ Failed to load initial universal menu:", err);
+  }
+};
+loadInitialMenu();
+
+
+// --- Handle new WebSocket connections ---
+wss.on("connection", async (ws) => {
+  console.log("🔌 WebSocket client connected (universalmenu)");
+
+  // Send the current menu immediately on connect
+  const { universalMenuData } = require("./utils/broadcast");
+  ws.send(JSON.stringify({ type: "menu-update", data: universalMenuData }));
+
+  ws.on("close", () => {
+    console.log("❌ WebSocket client disconnected (universalmenu)");
+  });
+});
 
 
 

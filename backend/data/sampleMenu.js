@@ -1,7 +1,7 @@
-
-  module.exports = {
+module.exports = {
   restaurantName: "Sample Restaurant",
-    views: [
+
+  views: [
     {
       id: "website",
       name: "Website",
@@ -18,577 +18,844 @@
     },
   ],
 
-
   sections: [
     {
       id: "1",
       section: "Appetizers",
-      groups: [], // 👈 No groups in this section
+
+      groups: [],
+
       items: [
         {
           id: "ap1",
+
           name: "Spring Rolls",
+
           description: "Crispy rolls stuffed with vegetables.",
-         
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448516/rinfoto0-spring-rolls-1755962_1920_w4pwrg.jpg",
+
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448516/rinfoto0-spring-rolls-1755962_1920_w4pwrg.jpg",
+
           basePrice: 5.99,
 
-  prices: {
-    website: 4,
-    kiosk: 3,
-  },
-          displaySettings: {
-  "website": {
-    visible: true,
-    available: true,
-    remaining: 2,
-  },
+          prices: {
+            website: 4,
+            kiosk: 3,
+          },
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: 2,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m1", name: "Extra Sauce", price: 0.5 },
-            
+            {
+              id: "m1",
+              name: "Extra Sauce",
+              price: 0.5,
+              type: "addon",
+            },
           ],
- customProperties: [],
- tags: ["vegetarian"],
+
+          customProperties: [],
+
+          tags: ["vegetarian"],
         },
+
         {
           id: "ap2",
+
           name: "Garlic Bread",
+
           description: "Toasted bread with garlic and herbs.",
-         
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448890/waldemar-brandt-zevnVcUyiJg-unsplash_xpp6tm.jpg",
-         basePrice: 4.49,
 
-  prices: {
-    website: 4,
-    
-  },
- displaySettings: {
-  "website": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448890/waldemar-brandt-zevnVcUyiJg-unsplash_xpp6tm.jpg",
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          basePrice: 4.49,
+
+          prices: {
+            website: 4,
+          },
+
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
 
           modifiers: [],
-         
- customProperties: [], // ✅ this is the dynamic part
- tags: ["vegetarian", "mild"],
-  
+
+          customProperties: [],
+
+          tags: ["vegetarian", "mild"],
         },
+
         {
           id: "ap3",
+
           name: "Bruschetta",
+
           description: "Grilled bread with tomato and basil.",
-         
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448686/pexels-shameel-mukkath-3421394-5639411_iptioh.jpg",
+
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776448686/pexels-shameel-mukkath-3421394-5639411_iptioh.jpg",
+
           basePrice: 6.25,
 
-  prices: {
-  
-  },
-           displaySettings: {
-  "website": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
+          prices: {},
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-              { id: "m2", name: "Add Balsamic", price: 1 },
-            { id: "m3", name: "Add Parmesan", price: 1.5 },
+            {
+              id: "m2",
+              name: "Add Balsamic",
+              price: 1,
+              type: "addon",
+            },
+
+            {
+              id: "m3",
+              name: "Add Parmesan",
+              price: 1.5,
+              type: "addon",
+            },
           ],
-          
-  customProperties: [],
-  tags: ["vegetarian"],
+
+          customProperties: [],
+
+          tags: ["vegetarian"],
         },
       ],
     },
+
     {
       id: "2",
+
       section: "Mains",
-      groups: [], // 👈 optional empty if not grouping yet
+
+      groups: [],
+
       items: [
         {
           id: "mn1",
+
           name: "Grilled Chicken",
+
           description: "Juicy grilled chicken with herbs.",
-          
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449061/sam-moghadam-VpOpy6QrDrs-unsplash_nb9c4e.jpg",
-           basePrice: 12.99,
 
-  prices: {
-   
-    kiosk: 13.99,
-  },
- displaySettings: {
-  "website": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449061/sam-moghadam-VpOpy6QrDrs-unsplash_nb9c4e.jpg",
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          basePrice: 12.99,
+
+          prices: {
+            kiosk: 13.99,
+          },
+
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m4", name: "Add Rice", price: 2 },
-            { id: "m5", name: "Extra Veggies", price: 5 },
-             { id: "m6", name: "Add Beans", price: 2 },
+            {
+              id: "m4",
+              name: "Add Rice",
+              price: 2,
+              type: "addon",
+            },
+
+            {
+              id: "m5",
+              name: "Extra Veggies",
+              price: 5,
+              type: "addon",
+            },
+
+            {
+              id: "m6",
+              name: "Add Beans",
+              price: 2,
+              type: "addon",
+            },
           ],
-          
-  customProperties: [],
-  tags: [],
+
+          customProperties: [],
+
+          tags: [],
         },
+
         {
           id: "mn2",
+
           name: "Veggie Pasta",
+
           description: "Pasta tossed with fresh vegetables.",
-          
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449132/abhishek-hajare-_3dTLrMwiW8-unsplash_hhkokz.jpg",
-         basePrice: 10.49,
 
-  prices: {
-   pos: 13,
-  },
-           displaySettings: {
-  "website": {
-    visible: false,
-    available: true,
-    remaining: null,
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449132/abhishek-hajare-_3dTLrMwiW8-unsplash_hhkokz.jpg",
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          basePrice: 10.49,
+
+          prices: {
+            pos: 13,
+          },
+
+          displaySettings: {
+            website: {
+              visible: false,
+              available: true,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m7", name: "Make itGluten-Free Pasta", price: 3 },
+            {
+              id: "m7",
+              name: "Make it Gluten-Free Pasta",
+              price: 3,
+              type: "addon",
+            },
           ],
-          
-customProperties: [],
-tags: ["vegetarian"],
+
+          customProperties: [],
+
+          tags: ["vegetarian"],
         },
+
         {
           id: "mn3",
+
           name: "Cheeseburger",
+
           description: "Beef patty with melted cheese and fries.",
-          
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449178/amirali-mirhashemian-pucP6jZSyV4-unsplash_rfan9f.jpg",
-           basePrice: 11.99,
 
-  prices: {
-    
-  },
-            displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 5,
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449178/amirali-mirhashemian-pucP6jZSyV4-unsplash_rfan9f.jpg",
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: 5,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: 5,
-  },
-},
+          basePrice: 11.99,
+
+          prices: {},
+
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: 5,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: 5,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: 5,
+            },
+          },
+
           modifiers: [
-            { id: "m8", name: "Add Bacon", price: 2 },
-            { id: "m9", name: "Extra Cheese", price: 1 },
-            { id: "m10", name: "Double Party", price: 5 },
+            {
+              id: "m8",
+              name: "Add Bacon",
+              price: 2,
+              type: "addon",
+            },
+
+            {
+              id: "m9",
+              name: "Extra Cheese",
+              price: 1,
+              type: "addon",
+            },
+
+            {
+              id: "m10",
+              name: "Double Patty",
+              price: 5,
+              type: "addon",
+            },
           ],
-          
-  customProperties: [],
-  tags: [],
+
+          customProperties: [],
+
+          tags: [],
         },
       ],
     },
+
     {
       id: "3",
+
       section: "Desserts",
-      groups: [], // 👈 still allowed
+
+      groups: [],
+
       items: [
         {
           id: "ds1",
+
           name: "Chocolate Cake",
+
           description: "Rich and moist chocolate cake.",
-       
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449240/braggsdiner-F8RKds2YdqA-unsplash_iobveb.jpg",
+
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449240/braggsdiner-F8RKds2YdqA-unsplash_iobveb.jpg",
+
           basePrice: 6.99,
 
-  prices: {
-  
-    kiosk: 5,
-  },
+          prices: {
+            kiosk: 5,
+          },
 
-           displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 2,
-  },
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: 2,
+            },
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [],
-          
-  customProperties: [],
-  tags: ["vegan"],
+
+          customProperties: [],
+
+          tags: ["vegan"],
         },
+
         {
           id: "ds2",
+
           name: "Cheesecake",
+
           description: "Creamy cheesecake with berry topping.",
-         
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449317/tina-guina-s8_7AqkzCWY-unsplash_usu4fx.jpg",
-          basePrice:7.49,
 
-  prices: {
-   
-  },
-           displaySettings: {
-  website: {
-    visible: false,
-    available: false,
-    remaining: null,
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449317/tina-guina-s8_7AqkzCWY-unsplash_usu4fx.jpg",
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          basePrice: 7.49,
+
+          prices: {},
+
+          displaySettings: {
+            website: {
+              visible: false,
+              available: false,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m11", name: "Strawberry Topping", price: 1 },
-            { id: "m12", name: "Chocolate Syrup", price: 1 },
+            {
+              id: "m11",
+              name: "Strawberry Topping",
+              price: 1,
+              type: "addon",
+            },
+
+            {
+              id: "m12",
+              name: "Chocolate Syrup",
+              price: 1,
+              type: "addon",
+            },
           ],
-          
- customProperties: [],
- tags: [],
+
+          customProperties: [],
+
+          tags: [],
         },
+
         {
           id: "ds3",
+
           name: "Ice Cream",
+
           description: "Two scoops of vanilla or chocolate.",
-         
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449954/zach-camp-3D0HUHFcRrk-unsplash_nfrfgt.jpg",
+
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449954/zach-camp-3D0HUHFcRrk-unsplash_nfrfgt.jpg",
+
           basePrice: 4.99,
 
-  prices: {
-     },
-           displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 2,
-  },
+          prices: {},
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: 2,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m13", name: "Add Sprinkles", price: 0.5 },
-            { id: "m14", name: "Whipped Cream", price: 0.75 },
+            {
+              id: "m13",
+              name: "Add Sprinkles",
+              price: 0.5,
+              type: "addon",
+            },
+
+            {
+              id: "m14",
+              name: "Whipped Cream",
+              price: 0.75,
+              type: "addon",
+            },
           ],
-          
-  customProperties: [],
-  tags: [],
+
+          customProperties: [],
+
+          tags: [],
         },
       ],
     },
+
     {
       id: "4",
+
       section: "Drinks",
+
       groups: [
         {
           id: "g1",
-          groupName: "Atole", // 👈 group within Drinks
+
+          groupName: "Atole",
+
           items: [
             {
               id: "drA1",
+
               name: "Atole de Elote",
+
               description: "Sweet corn-based traditional atole.",
-              
-              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450635/Receta-para-hacer-atol-de-elote-guatemalteco-1_vvnz82.jpg",
-             basePrice: null,
 
-  prices: {
-  
-  },
+              image:
+                "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450635/Receta-para-hacer-atol-de-elote-guatemalteco-1_vvnz82.jpg",
 
-               displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 5,
-  },
+              basePrice: null,
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+              prices: {},
+
+              displaySettings: {
+                website: {
+                  visible: true,
+                  available: true,
+                  remaining: 5,
+                },
+
+                pos: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+
+                kiosk: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+              },
+
               modifiers: [
-                { id: "m15", name: "Small", price: 4.49 },
-                { id: "m16", name: "Medium", price: 6 },
-            { id: "m17", name: "Large", price: 8 },
+                {
+                  id: "m15",
+                  name: "Small",
+                  price: 4.49,
+                  type: "variant",
+                },
+
+                {
+                  id: "m16",
+                  name: "Medium",
+                  price: 6,
+                  type: "variant",
+                },
+
+                {
+                  id: "m17",
+                  name: "Large",
+                  price: 8,
+                  type: "variant",
+                },
               ],
-              
-  customProperties: [],
-  tags: [],
+
+              customProperties: [],
+
+              tags: [],
             },
+
             {
               id: "drA2",
+
               name: "Champurrado",
+
               description: "Thick Mexican chocolate atole.",
-            
-              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450492/Atole_xswvh2.jpg",
-               basePrice: null,
 
-  prices: {
- 
-  },
+              image:
+                "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450492/Atole_xswvh2.jpg",
 
-               displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 2,
-  },
+              basePrice: null,
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: false,
-    available: false,
-    remaining: null,
-  },
-},
+              prices: {},
+
+              displaySettings: {
+                website: {
+                  visible: true,
+                  available: true,
+                  remaining: 2,
+                },
+
+                pos: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+
+                kiosk: {
+                  visible: false,
+                  available: false,
+                  remaining: null,
+                },
+              },
+
               modifiers: [
-                { id: "m18", name: "Small", price: 4.49 },
-                 { id: "m19", name: "Medium", price: 6 },
-            { id: "m20", name: "Large", price: 8 },
+                {
+                  id: "m18",
+                  name: "Small",
+                  price: 4.49,
+                  type: "variant",
+                },
+
+                {
+                  id: "m19",
+                  name: "Medium",
+                  price: 6,
+                  type: "variant",
+                },
+
+                {
+                  id: "m20",
+                  name: "Large",
+                  price: 8,
+                  type: "variant",
+                },
               ],
-              
- customProperties: [],
- tags: [],
+
+              customProperties: [],
+
+              tags: [],
             },
           ],
         },
+
         {
           id: "g2",
-          groupName: "Aguas Frescas", // 👈 another optional group
+
+          groupName: "Aguas Frescas",
+
           items: [
             {
               id: "drF1",
+
               name: "Horchata",
+
               description: "Rice and cinnamon drink.",
-              
-              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450680/887b3523ae2674fb5d1ce9c77eff4d7d_strawberry_horchata_1200_628_n0g8ic.jpg",
-               basePrice:null,
 
-  prices: {
-  
-  },
+              image:
+                "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776450680/887b3523ae2674fb5d1ce9c77eff4d7d_strawberry_horchata_1200_628_n0g8ic.jpg",
 
- displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: 2,
-  },
+              basePrice: null,
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+              prices: {},
+
+              displaySettings: {
+                website: {
+                  visible: true,
+                  available: true,
+                  remaining: 2,
+                },
+
+                pos: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+
+                kiosk: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+              },
 
               modifiers: [
-                { id: "m21", name: "Small", price: 2.99 },
-                { id: "m22", name: "Medium", price: 4 },
-            { id: "m23", name: "Large", price: 6 },
+                {
+                  id: "m21",
+                  name: "Small",
+                  price: 2.99,
+                  type: "variant",
+                },
+
+                {
+                  id: "m22",
+                  name: "Medium",
+                  price: 4,
+                  type: "variant",
+                },
+
+                {
+                  id: "m23",
+                  name: "Large",
+                  price: 6,
+                  type: "variant",
+                },
               ],
-              
-  customProperties: [],
-  tags: [],
+
+              customProperties: [],
+
+              tags: [],
             },
+
             {
               id: "drF2",
+
               name: "Jamaica",
+
               description: "Hibiscus flower tea served cold.",
-              
-              image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449748/asli-dokuzeylul-oVACw86wCB0-unsplash_zgnykc.jpg",
-               basePrice: null,
 
-  prices: {
-  
-  },
+              image:
+                "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449748/asli-dokuzeylul-oVACw86wCB0-unsplash_zgnykc.jpg",
 
-               displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
+              basePrice: null,
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+              prices: {},
+
+              displaySettings: {
+                website: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+
+                pos: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+
+                kiosk: {
+                  visible: true,
+                  available: true,
+                  remaining: null,
+                },
+              },
+
               modifiers: [
-                { id: "m24", name: "Small", price: 2.99 },
-                   { id: "m25", name: "Medium", price: 4 },
-            { id: "m26", name: "Large", price: 6 },
+                {
+                  id: "m24",
+                  name: "Small",
+                  price: 2.99,
+                  type: "variant",
+                },
+
+                {
+                  id: "m25",
+                  name: "Medium",
+                  price: 4,
+                  type: "variant",
+                },
+
+                {
+                  id: "m26",
+                  name: "Large",
+                  price: 6,
+                  type: "variant",
+                },
               ],
-              
-  customProperties: [],
-  tags: [],
+
+              customProperties: [],
+
+              tags: [],
             },
           ],
         },
       ],
+
       items: [
         {
           id: "dr3",
+
           name: "Coffee",
+
           description: "Hot brewed coffee.",
-          
-          image: "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449689/nathan-dumlao-6VhPY27jdps-unsplash_niazrd.jpg",
-           basePrice: 2.99,
 
-  prices: {
-   
-  },
+          image:
+            "https://res.cloudinary.com/dadjbgtb5/image/upload/v1776449689/nathan-dumlao-6VhPY27jdps-unsplash_niazrd.jpg",
 
-           displaySettings: {
-  website: {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
+          basePrice: 2.99,
 
-  "pos": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-   "kiosk": {
-    visible: true,
-    available: true,
-    remaining: null,
-  },
-},
+          prices: {},
+
+          displaySettings: {
+            website: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            pos: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+
+            kiosk: {
+              visible: true,
+              available: true,
+              remaining: null,
+            },
+          },
+
           modifiers: [
-            { id: "m27", name: "Add Milk", price: 0.5 },
-            { id: "m28", name: "Add Flavor", price: 1 },
+            {
+              id: "m27",
+              name: "Add Milk",
+              price: 0.5,
+              type: "addon",
+            },
+
+            {
+              id: "m28",
+              name: "Add Flavor",
+              price: 1,
+              type: "addon",
+            },
           ],
-          
- customProperties : [  // ✅ this is the dynamic part
-    { key: "Ground", value: "Decaf" },
-    
-  ],
-  tags: [],
+
+          customProperties: [
+            {
+              key: "Ground",
+              value: "Decaf",
+            },
+          ],
+
+          tags: [],
         },
       ],
     },

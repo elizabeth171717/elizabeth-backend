@@ -1,9 +1,18 @@
 const mongoose = require("mongoose");
 
+
 const ModifierSchema = new mongoose.Schema({
-  id: { type: String, required: true }, // frontend-generated id
+  id: { type: String, required: true },
+
   name: { type: String, required: true },
+
   price: { type: Number, default: 0 },
+
+  type: {
+    type: String,
+    enum: ["addon", "variant"],
+    default: "addon",
+  },
 }, { _id: false });
 
 // ✅ NEW
@@ -68,15 +77,17 @@ DishSchema.pre("validate", function(next) {
     this.prices &&
     this.prices.size > 0;
 
-  const hasModifierPrices =
-    this.modifiers?.some(
-      (mod) => mod.price > 0
-    );
+ const hasVariantPrices =
+  this.modifiers?.some(
+    (mod) =>
+      mod.type === "variant" &&
+      mod.price > 0
+  );
 
   if (
     !hasBasePrice &&
     !hasViewPrices &&
-    !hasModifierPrices
+    !hasVariantPrices
   ) {
     return next(
       new Error(

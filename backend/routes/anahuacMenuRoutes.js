@@ -13,5 +13,4 @@ router.put("/:client/menu", authMiddleware,updateMenu);
 // 🌍 PUBLIC (Website - NO AUTH)
 router.get("/:client/public-menu/:slug", getPublicMenu);
 
-
 module.exports = router;
