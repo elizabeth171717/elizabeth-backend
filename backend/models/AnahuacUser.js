@@ -40,6 +40,15 @@ const userSchema = new mongoose.Schema(
     verificationCodeExpires: {
       type: Number, // timestamp
     },
+
+    // 🔑 PASSWORD RESET FIELDS
+resetPasswordToken: {
+  type: String,
+},
+
+resetPasswordExpires: {
+  type: Date,
+},
   },
   { timestamps: true }
 );

@@ -1,186 +1,473 @@
-import { motion } from "framer-motion";
+
 import { useState } from "react";
 import ReactGA from "react-ga4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
-import SuccessModal from "../components/SuccessModal";
-
-// Determine the backend URL based on the environment
-const BACKEND_URL =
-  import.meta.env.MODE === "production"
-    ? import.meta.env.VITE_BACKEND_URL_PRODUCTION
-    : import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
-const client = import.meta.env.VITE_CLIENT;
-console.log("📦 Backend URL:", BACKEND_URL);
-console.log("🏷️ Client tenant:", client);
-
 const Homepage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
-  const [showModal, setShowModal] = useState(false); // State to show modal
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Disable scrolling
-    document.body.style.overflow = "hidden";
-
-    try {
-      const response = await fetch(`${BACKEND_URL}/api/${client}/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setShowModal(true); // Show success modal
-        setFormData({ name: "", email: "", phone: "", message: "" });
-        // Inside your form submit function (after successful submission)
-        ReactGA.event({
-          category: "Contact",
-          action: "Form Submitted",
-          label: "Contact Page Form",
-        });
-      } else {
-        alert("Something went wrong!");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred while submitting.");
-    }
-
-    // Re-enable scrolling
-    document.body.style.overflow = "auto";
-    setIsSubmitting(false);
-  };
-
+  
   return (
-    <div className="main-container">
-      <div className="site-intro">
-        <div className="site-name">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            Elizabeth TR
-          </motion.h2>
-          <a
-            href="https://www.facebook.com/profile.php?id=61575876650894"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() =>
-              ReactGA.event({
-                category: "Engagement",
-                action: "Clicked Facebook Link",
-                label: "Header Social Icon",
-              })
-            }
-          >
-            <FontAwesomeIcon icon={faFacebook} className="faFacebook" />
-          </a>
-        </div>
-        <h3>Professional and Modern Website Design</h3>
-      </div>
+    <div className="page-container">
+<div className="left-section">
+ 
+<section>
+    <table>
+      <tr>
+        <th>ABARROTES</th>
+        <th>Hay</th>
+        <th>Pide</th>
+      </tr>
+      <tr>
+        <td>Pimienta negra molida</td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Palillos p/ Bruchetta</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Arina</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Arroz</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Anchoas</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Aceite de oliva extra virgen</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Mostasa Dijon</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Mayonesa Nat</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Salsa inglesa Worcestershire</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Crutons</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Chile chipotle</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Chile powder</td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Paprika</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Pan ajo o bayette</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Aceite</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Pure de papa instatanea</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Galleta maria</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Persley seco</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Miel</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Red pepper flakes</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Linguini</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Texas Pete para wings</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ajo en polvo</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Persley seco</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Cayenne pepper</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Cebolla en polvo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Vainilla</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Concentrado de pollo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ginger en polvo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Comino en polvo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Kosher salt</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Azucar</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Garlic salt</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Tony chachere's creole seasoning</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Flour tortilla</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Corn tortilla</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Maizena</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-      <section className="contact-form">
-        <div className="title-container">
-          <h1 className="subtitle"> Fill Out these Form to get started</h1>
-          <p>Your business exists — let’s make sure the world sees it Today</p>
-        </div>
+  </section>
+  </div>
+  <div className="middle-section">
+    
+<section>
+    <table>
+      <tr>
+        <th>CARNES Y MARISCOS</th>
+        <th>Hay</th>
+        <th>Pide</th>
+      </tr>
+      <tr>
+        <td>Camaron 8/12</td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Langosta</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Calamari</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Salmon</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Branzino</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Pulpo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Rib eye</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Ternera Steak</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Hueso babilla</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Lamb chops</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Wings</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-        {/* ✅ Show modal when form is submitted */}
-        {showModal && (
-          <SuccessModal
-            message="I will get back to you ASAP!"
-            onClose={() => setShowModal(false)}
-          />
-        )}
+  </section>
 
-        <form className="form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <br />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-          />
-          <br />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Your Phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            pattern="\d{10}"
-            title="Phone number must be 10 digits"
-          />
-          <br />
+  <section>
+    <table>
+      <tr>
+        <th>LACTEOS</th>
+        <th>Hay</th>
+        <th>Pide</th>
+      </tr>
+      <tr>
+        <td>Queso parmesano</td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr>
+        <td>Disco de empanada</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Mantequilla</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Cream cheese</td>
+        <td></td>
+        <td></td>
+      </tr>
+       <tr>
+        <td>Huevos</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Leche condensada</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Leche entera</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Sour Cream</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-          <select
-            name="service"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Select a service
-            </option>
+  </section>
+  </div>
+<div className="right-section">
+ <section>
+    <table>
+      <tr> <th>VERDURAS</th>
+      <th>Hay</th>
+      <th>Pide</th>
+      </tr>
+    <tr>
+      <td>Romaine lechuga</td>
+       <td></td>
+        <td></td>
+    </tr>
+       <tr>
+      <td>Papas Francesas</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Cebolla</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Bell pepper (rojo y verde)</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Canela</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Spring mix</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Epazote</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Jitomate </td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Jitomate cherry</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Basil</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Ajo entero</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Thyme</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Rosmery</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Laurel</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Parsley</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Naranja</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Limon Amarillo</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Spinach</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Sparragus</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Brocolini</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Fresa</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Albaca Fresca</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Pineapple</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Oregano</td>
+       <td></td>
+        <td></td>
+    </tr>
+     <tr>
+      <td>Papas</td>
+       <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>Sweet potato</td>
+       <td></td>
+        <td></td>
+    </tr>
+    </table>
+    </section>
 
-            <option value="Website Design">Website Design</option>
-            <option value="Website Redesign">Website Redesign</option>
-            <option value="Website Optimization">Website Optimization</option>
-            <option value="E-commerce">E-commerce</option>
-            <option value="Facebook">Facebook</option>
-            <option value="Instagram">Instagram</option>
-            <option value="Email Setup">Email Setup</option>
-            <option value="Google My Business">Google My Business</option>
-            <option value="Translations">Translations</option>
-            <option value="HTML Tutorial">HTML Tutorial</option>
-            <option value="CSS Tutorial">CSS Tutorial</option>
-          </select>
-
-          <br />
-
-          {/* Submit button with loading state */}
-          <button
-            type="submit"
-            className={`submit-button ${isSubmitting ? "disabled" : ""}`}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
-        </form>
-      </section>
-
-      <footer>
-        <p>Elizabeth. All rights reserved 2025 </p>
-      </footer>
+ 
+  </div>
     </div>
   );
 };

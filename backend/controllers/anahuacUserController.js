@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
 const generateCode = require("../utils/generateCode");
 const sendAnahuacEmail = require("../utils/sendAnahuacEmail");
 const sendVerificationEmail = require("../utils/sendVerificationEmail");
@@ -300,6 +302,135 @@ const updateAccount = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  const client = req.params.client;
+  const { email } = req.body;
+
+  const tenant = tenantConfigs[client];
+
+  if (!tenant) {
+    return res.status(400).json({
+      message: "Unrecognized client",
+    });
+  }
+
+  try {
+    const db = await getTenantDB(client);
+    const User = db.models.User || db.model("User", userSchema);
+
+    const user = await User.findOne({ email });
+
+    // Don't reveal whether email exists
+    if (!user) {
+      return res.json({
+        message:
+          "If an account exists, a reset link has been sent.",
+      });
+    }
+
+    // Generate token
+    const token = crypto.randomBytes(32).toString("hex");
+
+    // Save token
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires =
+      Date.now() + 15 * 60 * 1000; // 15 minutes
+
+    await user.save();
+
+    // Build frontend reset link
+    const frontendURL =
+      process.env.NODE_ENV === "production"
+        ? tenant.FRONTEND_URL_PRODUCTION
+        : tenant.FRONTEND_URL_DEVELOPMENT;
+
+    const resetLink =
+      `${frontendURL}/reset-password/${token}`;
+
+    // Send email
+    await sendResetPasswordEmail(
+      user.email,
+      user.name,
+      resetLink,
+      client
+    );
+
+    return res.json({
+      message:
+        "If an account exists, a reset link has been sent.",
+    });
+
+  } catch (error) {
+    console.error("Forgot password error:", error);
+
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+
+const resetPassword = async (req, res) => {
+  const client = req.params.client;
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  const tenant = tenantConfigs[client];
+
+  if (!tenant) {
+    return res.status(400).json({
+      message: "Unrecognized client",
+    });
+  }
+
+  try {
+    const db = await getTenantDB(client);
+    const User = db.models.User || db.model("User", userSchema);
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid or expired reset link.",
+      });
+    }
+
+    // Optional password validation
+    if (!newPassword || newPassword.length < 6) {
+      return res.status(400).json({
+        message:
+          "Password must be at least 6 characters.",
+      });
+    }
+
+    // Save new password
+    user.password = await bcrypt.hash(
+      newPassword,
+      10
+    );
+
+    // Clear reset fields
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    return res.json({
+      message: "Password reset successfully.",
+    });
+
+  } catch (error) {
+    console.error("Reset password error:", error);
+
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
 module.exports = {
   signup,
   login,
@@ -308,4 +439,6 @@ module.exports = {
   verifyAccount,
   updateAccount,
   getMe,
+  forgotPassword,
+  resetPassword
 };

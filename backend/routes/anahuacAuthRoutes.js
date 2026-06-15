@@ -6,7 +6,9 @@ const {
   requestVerification,
   verifyAccount,
   updateAccount,
-  getMe
+  getMe,
+  forgotPassword,
+  resetPassword
 } = require("../controllers/anahuacUserController");
 
 const authMiddleware = require("../middleware/authMiddleware");
@@ -19,6 +21,15 @@ router.post("/:client/signup", signup);
 router.post("/:client/login", login);
 router.post("/:client/request-verification", requestVerification);
 router.post("/:client/verify", verifyAccount);
+router.post(
+  "/:client/forgot-password",
+  forgotPassword
+);
+
+router.post(
+  "/:client/reset-password/:token",
+  resetPassword
+);
 
 // Logged-in user (their own account)
 router.get("/:client/me", authMiddleware, getMe);
