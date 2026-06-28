@@ -59,11 +59,24 @@ exports.uploadImage = (req, res) => {
       });
 
       // ✅ Upload to Cloudinary
+
       const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: `menus/${client}`,
-        use_filename: true,
-        unique_filename: false,
-      });
+  folder: `menus/${client}`,
+   resource_type: "image",
+  use_filename: true,
+  unique_filename: true,
+
+  transformation: [
+    {
+      width: 1200,
+      height: 1200,
+      crop: "limit",
+      quality: "auto",
+      fetch_format: "auto",
+      
+    },
+  ],
+});
 
       // ✅ Delete local temp file
       fs.unlink(req.file.path, (unlinkErr) => {
