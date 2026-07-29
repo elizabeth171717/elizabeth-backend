@@ -110,11 +110,14 @@ const login = async (req, res) => {
   try {
     const db = await getTenantDB(client);
     const User = db.models.User || db.model("User", userSchema);
+console.log("EMAIL:", email);
 
     const user = await User.findOne({ email });
+    console.log("USER FOUND:", user);
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("PASSWORD MATCH:", isMatch);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign(

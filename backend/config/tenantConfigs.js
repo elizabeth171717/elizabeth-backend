@@ -62,6 +62,17 @@ menu: {
  
     },
 
+     snacks: {
+     JWT_SECRET: process.env.SNACK_JWT_SECRET,
+    MONGO_URI: process.env.SNACK_MONGO_URI,
+    FRONTEND_URL_PRODUCTION: process.env.SNACK_FRONTEND_URL_PRODUCTION,
+    FRONTEND_URL_DEVELOPMENT: process.env.SNACK_FRONTEND_URL_DEVELOPMENT,
+    EMAIL_SERVICE: process.env.SNACK_EMAIL_SERVICE,
+      EMAIL_USER: process.env.SNACK_EMAIL_USER,
+      EMAIL_PASS: process.env.SNACK_EMAIL_PASS,
+      OWNER_EMAIL: process.env.SNACK_OWNER_EMAIL,
+},
+
 
   };
   

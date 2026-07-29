@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+require("./cron/reminderCron");
 const cors = require("cors");
 const http = require("http");
 const { WebSocketServer } = require("ws");
@@ -13,13 +14,12 @@ const contactRoutes = require("./routes/contactRoutes");
 const deliveryFeeRoutes = require("./routes/deliveryFeeRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
-const authRoutes = require("./routes/authRoutes");
-
 const anahuacAuthRoutes = require("./routes/anahuacAuthRoutes");
 const anahuacMenuRoutes = require("./routes/anahuacMenuRoutes");
-
 const uploadRoutes = require("./routes/uploadRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const bhopRoutes = require("./routes/bhopRoutes");
+const snackListRoutes = require("./routes/snackListRoutes")
 const getTenantDB = require("./utils/getTenantDB"); // ✅ FIX: add this
 const path = require("path");
 
@@ -83,9 +83,10 @@ app.use("/api", portfolioRoutes);
 app.use("/api", uploadRoutes);
 app.use("/api", anahuacMenuRoutes);
 app.use("/api", adminRoutes);
-
+app.use("/api", snackListRoutes);
+app.use("/auth", bhopRoutes);
 app.use("/auth", anahuacAuthRoutes);
-app.use("/auth", authRoutes);
+
 
 // --- WS ONLY for universalmenu ---
 const server = http.createServer(app);
