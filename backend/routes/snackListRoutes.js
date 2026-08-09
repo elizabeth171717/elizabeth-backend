@@ -5,7 +5,7 @@ const router = express.Router({ mergeParams: true });
 const {
   saveSnackList,
   getSnackList,
- 
+  getPublicSnackList,
 } = require("../controllers/snackListController");
 
 const snackAuthMiddleware = require("../middleware/snackAuthMiddleware");
@@ -22,6 +22,15 @@ router.get(
   "/:client/snacklist",
   snackAuthMiddleware,
   getSnackList
+);
+
+// ===============================
+// GET PUBLIC SNACK LIST BY SLUG
+// NO LOGIN REQUIRED
+// ===============================
+router.get(
+  "/:client/public-snacklist/:slug",
+  getPublicSnackList
 );
 
 module.exports = router;

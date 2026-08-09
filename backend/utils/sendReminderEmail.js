@@ -38,43 +38,29 @@ async function sendReminderEmail({
       <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto;">
 
         <h2 style="color:#4CAF50;">
-          🍎 Snack Reminder
+          🍎 RECORDATORIO DE SNACK
         </h2>
 
         <p>Hello ${parentName},</p>
 
-        <p>
-          This is a friendly reminder that you are scheduled
-          to bring the snack for:
-        </p>
+        <p><strong>
+         
+          Este es un recordatorio que hoy es tu turno de traer snacks para la clase
+        </p></strong>
 
-        <table style="border-collapse:collapse;">
-          <tr>
-            <td style="padding:6px 12px;"><strong>Student</strong></td>
-            <td>${studentName}</td>
-          </tr>
-
-          <tr>
-            <td style="padding:6px 12px;"><strong>Class</strong></td>
-            <td>${listName}</td>
-          </tr>
-
-          <tr>
-            <td style="padding:6px 12px;"><strong>Date</strong></td>
-           <td>${formattedDate}</td>
-          </tr>
-        </table>
+       
 
         <br/>
 
         <p>
-          Thank you for helping make snack time special for the kids!
+         
+          Gracias por ayudar aser el tiempo de snack, un momento especial para los ninos!
         </p>
 
         <br/>
 
         <p>
-          If you are unable to bring the snack, please contact
+        Por cualkier pregunta, contacta :
           <strong>${organizer}</strong>.
         </p>
 
@@ -88,9 +74,9 @@ async function sendReminderEmail({
     `;
 
     await transporter.sendMail({
-      from: `"Snack List App" <${tenant.EMAIL_USER}>`,
+      from: `"BHOP SNACK" <${tenant.EMAIL_USER}>`,
       to,
-      subject: `Snack Reminder - ${listName}`,
+      subject: `Recordatorio de Snack - ${listName}`,
       html,
     });
 

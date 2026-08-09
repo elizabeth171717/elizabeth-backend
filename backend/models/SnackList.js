@@ -33,11 +33,13 @@ const SnackListSchema = new mongoose.Schema(
       required: true,
     },
 
-    // Organizer who created the list
-    organizer: {
-      type: String,
-      required: true,
-    },
+    slug: {
+  type: String,
+  unique: true,
+  required: true,
+},
+
+    
 
 
     rows: [RowSchema],

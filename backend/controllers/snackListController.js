@@ -2,6 +2,7 @@ const getTenantDB = require("../utils/getTenantDB");
 const snackListSchema = require("../models/SnackList");
 
 const sendReminderEmail = require("../utils/sendReminderEmail");
+
 // ===============================
 // SAVE / UPDATE SNACK LIST
 // ===============================
@@ -15,31 +16,63 @@ const saveSnackList = async (req, res) => {
       db.models.SnackList ||
       db.model("SnackList", snackListSchema);
 
-const ownerId = req.user.userId;
+    const ownerId = req.user.userId;
 
-const { listName, organizer, rows } = req.body;
+    const { listName, rows } = req.body;
 
-if (!Array.isArray(rows)) {
-  return res.status(400).json({
-    message: "Rows must be an array.",
-  });
-}
+    if (!Array.isArray(rows)) {
+      return res.status(400).json({
+        message: "Rows must be an array.",
+      });
+    }
 
-const snackList = await SnackList.findOneAndUpdate(
-  { owner: ownerId },
-  {
-    owner: ownerId,
-    listName,
-    organizer,
-    rows,
-  },
-  {
-    new: true,
-    upsert: true,
-  }
-);
+    // ===============================
+    // CHECK IF THIS USER ALREADY
+    // HAS A SNACK LIST
+    // ===============================
+    const existingSnackList = await SnackList.findOne({
+      owner: ownerId,
+    });
 
-res.status(200).json(snackList);
+    // ===============================
+    // CREATE SLUG ONLY ONCE
+    // ===============================
+    let slug = existingSnackList?.slug;
+
+    if (!slug) {
+      const baseSlug = listName
+        .toLowerCase()
+        .trim()
+        .replace(/['’]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+      const randomPart = Math.random()
+        .toString(36)
+        .substring(2, 8);
+
+      slug = `${baseSlug}-${randomPart}`;
+    }
+
+    // ===============================
+    // SAVE / UPDATE SNACK LIST
+    // ===============================
+    const snackList = await SnackList.findOneAndUpdate(
+      { owner: ownerId },
+      {
+        owner: ownerId,
+        listName,
+        slug,
+       
+        rows,
+      },
+      {
+        new: true,
+        upsert: true,
+      }
+    );
+
+    res.status(200).json(snackList);
 
   } catch (err) {
     console.error(err);
@@ -49,6 +82,9 @@ res.status(200).json(snackList);
     });
   }
 };
+
+
+
 
 
 // ===============================
@@ -85,6 +121,38 @@ const getSnackList = async (req, res) => {
   }
 };
 
+
+const getPublicSnackList = async (req, res) => {
+  try {
+    const client = req.params.client;
+    const slug = req.params.slug;
+
+    const db = await getTenantDB(client);
+
+    const SnackList =
+      db.models.SnackList ||
+      db.model("SnackList", snackListSchema);
+
+    const snackList = await SnackList.findOne({
+      slug: slug,
+    });
+
+    if (!snackList) {
+      return res.status(404).json({
+        message: "Snack list not found.",
+      });
+    }
+
+    res.status(200).json(snackList);
+
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      message: "Failed to load public snack list.",
+    });
+  }
+};
 
 // ===============================
 // SEND TODAY'S REMINDER EMAILS
@@ -150,5 +218,6 @@ const sendReminders = async () => {
 module.exports = {
   saveSnackList,
   getSnackList,
+  getPublicSnackList,
   sendReminders,
 };
