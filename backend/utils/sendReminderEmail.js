@@ -48,7 +48,7 @@ async function sendReminderEmail({
           Este es un recordatorio que hoy es tu turno de traer snacks para la clase
         </p></strong>
 
-        <pstyle="font-size:18px;">
+        <p style="font-size:18px;">
          
           Gracias por ayudar aser el tiempo de snack, un momento especial para los ninos!
         </p>
