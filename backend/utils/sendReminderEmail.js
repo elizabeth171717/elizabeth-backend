@@ -41,27 +41,16 @@ async function sendReminderEmail({
           🍎 RECORDATORIO DE SNACK
         </h2>
 
-        <p>Hello ${parentName},</p>
+        <p style="font-size:18px;">Hola ${parentName},</p>
 
-        <p><strong>
+        <p style="font-size:18px;"><strong>
          
           Este es un recordatorio que hoy es tu turno de traer snacks para la clase
         </p></strong>
 
-       
-
-        <br/>
-
-        <p>
+        <pstyle="font-size:18px;">
          
           Gracias por ayudar aser el tiempo de snack, un momento especial para los ninos!
-        </p>
-
-        <br/>
-
-        <p>
-        Por cualkier pregunta, contacta :
-          <strong>${organizer}</strong>.
         </p>
 
         <hr/>
