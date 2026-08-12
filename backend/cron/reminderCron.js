@@ -2,7 +2,7 @@ const cron = require("node-cron");
 const { sendReminders } = require("../controllers/snackListController");
 
 cron.schedule(
-  "00 11 * * *",
+  "50 21 * * *",
   async () => {
     console.log("⏰ Running daily snack reminder job...");
 
