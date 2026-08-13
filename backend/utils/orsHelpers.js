@@ -62,12 +62,19 @@ async function getDrivingDistance(startCoords, endCoords, apiKey) {
 
 
 function calculateFee(miles) {
-  if (miles >= 0 && miles <= 6) return 5;
-  if (miles > 6 && miles <= 9) return 7;
-  if (miles > 9 && miles <= 13) return 10;
+  // 1. Round up to the nearest half-mile to protect against strict API rounding
+  const adjustedMiles = Math.ceil(miles * 2) / 2;
+  
+  console.log(`📏 Raw ORS Distance: ${miles.toFixed(2)} mi | Adjusted Distance: ${adjustedMiles} mi`);
+
+  // 2. Updated pricing tiers to ensure fair pay for distance
+  if (adjustedMiles >= 0 && adjustedMiles <= 3) return 7;   // Short trips
+  if (adjustedMiles > 3 && adjustedMiles <= 6) return 12;  // Medium trips
+  if (adjustedMiles > 6 && adjustedMiles <= 9) return 18;  // Long trips
+  if (adjustedMiles > 9 && adjustedMiles <= 13) return 25; // Extra long trips ($20+ target)
+  
   throw new Error("Outside delivery zone (13+ miles)");
 }
-
 
 module.exports = {
   geocodeAddress,

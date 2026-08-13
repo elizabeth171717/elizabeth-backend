@@ -100,7 +100,7 @@ const getSnackList = async (req, res) => {
       db.models.SnackList ||
       db.model("SnackList", snackListSchema);
 
-    // ✅ Get the logged-in user's ID from the JWT
+    // Get the logged-in user's ID from the JWT
     const ownerId = req.user.userId;
 
     const snackList = await SnackList.findOne({
@@ -111,7 +111,12 @@ const getSnackList = async (req, res) => {
       return res.status(200).json(null);
     }
 
-    res.status(200).json(snackList);
+    // Return the snack list INCLUDING the slug
+    res.status(200).json({
+      ...snackList.toObject(),
+      slug: snackList.slug,
+    });
+
   } catch (err) {
     console.error(err);
 
@@ -120,6 +125,10 @@ const getSnackList = async (req, res) => {
     });
   }
 };
+
+
+
+
 
 
 const getPublicSnackList = async (req, res) => {
