@@ -163,11 +163,10 @@ const getPublicSnackList = async (req, res) => {
   }
 };
 
+
 // ===============================
-// SEND TODAY'S REMINDER EMAILS
-// ===============================
-// ===============================
-// SEND TODAY'S REMINDER EMAILS
+// SEND SNACK REMINDER EMAILS
+// SAME DAY + 3 DAYS BEFORE
 // ===============================
 const sendReminders = async () => {
   try {
@@ -189,40 +188,89 @@ const sendReminders = async () => {
 
     console.log("📅 Today's date:", today);
 
+    // Calculate the date 3 days from today
+    const threeDaysFromNow = new Date(`${today}T00:00:00`);
+
+    threeDaysFromNow.setDate(
+      threeDaysFromNow.getDate() + 3
+    );
+
+    const threeDaysDate = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/New_York",
+    }).format(threeDaysFromNow);
+
+    console.log(
+      "📅 Checking 3-day reminders for:",
+      threeDaysDate
+    );
+
     for (const snackList of snackLists) {
       for (const row of snackList.rows) {
         if (!row.email || !row.date) continue;
 
-        // row.date is already stored as YYYY-MM-DD
-        console.log(`👀 ${row.parent}: ${row.date}`);
-
-        // Skip if today's date doesn't match
-        if (row.date !== today) continue;
-
         console.log(
-          `📧 Sending reminder to ${row.parent} (${row.email})`
+          `👀 ${row.parent}: ${row.date}`
         );
 
-        await sendReminderEmail({
-          client,
-          to: row.email,
-          parentName: row.parent,
-          studentName: row.student,
-          snackDate: row.date,
-          organizer: snackList.organizer,
-          listName: snackList.listName,
-        });
+        // ===============================
+        // SAME-DAY REMINDER
+        // ===============================
+        if (row.date === today) {
+          console.log(
+            `📧 Sending SAME-DAY reminder to ${row.parent} (${row.email})`
+          );
 
-        console.log(`✅ Reminder sent to ${row.email}`);
+          await sendReminderEmail({
+            client,
+            to: row.email,
+            parentName: row.parent,
+            studentName: row.student,
+            snackDate: row.date,
+            organizer: snackList.organizer,
+            listName: snackList.listName,
+            reminderType: "today",
+          });
+
+          console.log(
+            `✅ Same-day reminder sent to ${row.email}`
+          );
+        }
+
+        // ===============================
+        // 3-DAY REMINDER
+        // ===============================
+        if (row.date === threeDaysDate) {
+          console.log(
+            `📧 Sending 3-DAY reminder to ${row.parent} (${row.email})`
+          );
+
+          await sendReminderEmail({
+            client,
+            to: row.email,
+            parentName: row.parent,
+            studentName: row.student,
+            snackDate: row.date,
+            organizer: snackList.organizer,
+            listName: snackList.listName,
+            reminderType: "threeDays",
+          });
+
+          console.log(
+            `✅ 3-day reminder sent to ${row.email}`
+          );
+        }
       }
     }
 
-    console.log("✅ Daily reminder job completed.");
+    console.log("✅ Reminder job completed.");
+
   } catch (err) {
-    console.error("❌ Daily reminder job failed:", err);
+    console.error(
+      "❌ Reminder job failed:",
+      err
+    );
   }
 };
-
 
 module.exports = {
   saveSnackList,

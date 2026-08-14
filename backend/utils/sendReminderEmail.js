@@ -8,14 +8,16 @@ async function sendReminderEmail({
   parentName,
   studentName,
   snackDate,
-  organizer,
   listName,
+  reminderType,
 }) {
   try {
     const tenant = tenantConfigs[client];
 
     if (!tenant) {
-      throw new Error(`No email configuration found for client: ${client}`);
+      throw new Error(
+        `No email configuration found for client: ${client}`
+      );
     }
 
     const transporter = nodemailer.createTransport({
@@ -26,37 +28,95 @@ async function sendReminderEmail({
       },
     });
 
-    const formattedDate = new Date(snackDate).toLocaleDateString("en-US", {
-  timeZone: "America/New_York",
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
+    // ===============================
+    // FORMAT SNACK DATE IN SPANISH
+    // ===============================
+    const formattedDate = new Date(
+      `${snackDate}T00:00:00`
+    ).toLocaleDateString("es-ES", {
+      timeZone: "America/New_York",
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
+    // Capitalize first letter
+    const displayDate =
+      formattedDate.charAt(0).toUpperCase() +
+      formattedDate.slice(1);
+
+    // ===============================
+    // 3-DAY REMINDER
+    // ===============================
+    let message;
+
+    if (reminderType === "threeDays") {
+      message = `
+        <p style="font-size:18px;">
+          Este es un recordatorio de que estás programado para traer
+          los snacks de la clase el día:
+        </p>
+
+        <p style="font-size:20px;">
+          <strong>${displayDate}</strong>
+        </p>
+
+        <p style="font-size:18px;">
+          Estudiante: <strong>${studentName}</strong>
+        </p>
+
+        <p style="font-size:18px;">
+          Muchas gracias por ayudar a hacer el momento de snack
+          un momento especial para los niños. 🍎
+        </p>
+      `;
+    } else {
+      // ===============================
+      // SAME-DAY REMINDER
+      // ===============================
+      message = `
+        <p style="font-size:18px;">
+          Este es un recordatorio de que <strong>hoy</strong> es tu turno
+          de traer snacks para la clase.
+        </p>
+
+        <p style="font-size:18px;">
+          Estudiante: <strong>${studentName}</strong>
+        </p>
+
+        <p style="font-size:18px;">
+          Muchas gracias por ayudar a hacer el momento de snack
+          un momento especial para los niños. 🍎
+        </p>
+      `;
+    }
+
+    // ===============================
+    // EMAIL
+    // ===============================
     const html = `
-      <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto;">
+      <div style="
+        font-family: Arial, sans-serif;
+        max-width:600px;
+        margin:auto;
+      ">
 
         <h2 style="color:#4CAF50;">
           🍎 RECORDATORIO DE SNACK
         </h2>
 
-        <p style="font-size:18px;">Hola ${parentName},</p>
-
-        <p style="font-size:18px;"><strong>
-         
-          Este es un recordatorio que hoy es tu turno de traer snacks para la clase
-        </p></strong>
-
         <p style="font-size:18px;">
-         
-          Gracias por ayudar aser el tiempo de snack, un momento especial para los ninos!
+          Hola ${parentName},
         </p>
+
+        ${message}
 
         <hr/>
 
         <p style="font-size:12px;color:#777;">
-          This reminder was sent automatically by the Snack List App.
+          Este recordatorio fue enviado automáticamente por
+          BHOP SNACK.
         </p>
 
       </div>
@@ -65,13 +125,23 @@ async function sendReminderEmail({
     await transporter.sendMail({
       from: `"BHOP SNACK" <${tenant.EMAIL_USER}>`,
       to,
-      subject: `Recordatorio de Snack - ${listName}`,
+      subject:
+        reminderType === "threeDays"
+          ? `Recordatorio de Snack - ${listName}`
+          : `Recordatorio de Snack para Hoy - ${listName}`,
       html,
     });
 
-    console.log(`✅ Reminder sent to ${to}`);
+    console.log(
+      `✅ ${reminderType} reminder sent to ${to}`
+    );
+
   } catch (err) {
-    console.error("❌ Failed to send reminder email:", err);
+    console.error(
+      "❌ Failed to send reminder email:",
+      err
+    );
+
     throw err;
   }
 }
