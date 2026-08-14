@@ -3,7 +3,7 @@ const { sendReminders } = require("../controllers/snackListController");
 
 cron.schedule(
   
-    "0 9 * * *",
+    "10 11 * * *",
   async () => {
     console.log("⏰ Running daily snack reminder job...");
 
