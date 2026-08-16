@@ -16,6 +16,7 @@ const RowSchema = new mongoose.Schema(
       default: "Upcoming",
     },
     email: String,
+     phone: String,
   }
 );
 
