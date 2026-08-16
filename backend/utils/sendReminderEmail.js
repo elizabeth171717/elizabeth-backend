@@ -28,23 +28,35 @@ async function sendReminderEmail({
       },
     });
 
-    // ===============================
-    // FORMAT SNACK DATE IN SPANISH
-    // ===============================
-    const formattedDate = new Date(
-      `${snackDate}T00:00:00`
-    ).toLocaleDateString("es-ES", {
-      timeZone: "America/New_York",
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
+  
+// ===============================
+// FORMAT SNACK DATE IN SPANISH
+// DO NOT USE TIMEZONE CONVERSION
+// ===============================
+const [year, month, day] = snackDate.split("-");
 
-    // Capitalize first letter
-    const displayDate =
-      formattedDate.charAt(0).toUpperCase() +
-      formattedDate.slice(1);
+
+const dateForDisplay = new Date(
+  Number(year),
+  Number(month) - 1,
+  Number(day)
+);
+
+
+const formattedDate = dateForDisplay.toLocaleDateString("es-ES", {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+
+// Capitalize first letter
+const displayDate =
+  formattedDate.charAt(0).toUpperCase() +
+  formattedDate.slice(1);
+
+
 
     // ===============================
     // 3-DAY REMINDER
