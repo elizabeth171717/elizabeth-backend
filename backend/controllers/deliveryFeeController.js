@@ -13,9 +13,7 @@ exports.calculateDeliveryFee = async (req, res) => {
   const tenantOrigin = req.headers.origin;
   const clientFromParams = req.params?.client;
 
-  console.log("🌐 Tenant Origin:", tenantOrigin);
-  console.log("📦 Address:", address);
-  console.log("🧭 Client Param:", clientFromParams);
+
 
   // Try finding tenant via origin header first
   let matchedTenant = Object.values(tenantConfigs).find((t) =>
@@ -36,6 +34,14 @@ exports.calculateDeliveryFee = async (req, res) => {
     const apiKey = matchedTenant.ORS_API_KEY;
     const businessAddress = matchedTenant.BUSINESS_ADDRESS;
 
+    console.log("🔑 ORS API KEY EXISTS:", !!apiKey);
+console.log("🏠 BUSINESS ADDRESS:", businessAddress);
+console.log("📫 CUSTOMER ADDRESS:", address);
+ console.log("🔑 RRICURA ORS KEY LOADED:", !!tenantConfigs.rricura.ORS_API_KEY);
+console.log("🏠 RRICURA BUSINESS ADDRESS:", tenantConfigs.rricura.BUSINESS_ADDRESS);
+  console.log("🔑 RRICURA ORS KEY:", tenantConfigs.rricura.ORS_API_KEY);
+
+ 
     const [businessLng, businessLat] = await geocodeAddress(businessAddress, apiKey);
     const [customerLng, customerLat] = await geocodeAddress(address, apiKey);
 

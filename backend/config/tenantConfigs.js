@@ -41,28 +41,8 @@ OPENAI_API_KEY:process.env.ANAHUAC_OPENAI_API_KEY,
 
     },
 
-menu: {
-    FRONTEND_URL_PRODUCTION: process.env.MENU_FRONTEND_URL_PRODUCTION,
-  FRONTEND_URL_DEVELOPMENT: process.env.MENU_FRONTEND_URL_DEVELOPMENT,
-  
-    },
-
-  
-
- qrrricura: {
-    FRONTEND_URL_PRODUCTION: process.env.QR_RRICURA_FRONTEND_URL_PRODUCTION,
-  FRONTEND_URL_DEVELOPMENT: process.env.QR_RRICURA_FRONTEND_URL_DEVELOPMENT,
- 
-     },
-
-     tamalepos: {
-    FRONTEND_URL_PRODUCTION: process.env.TAMALE_POS_FRONTEND_URL_PRODUCTION,
-  FRONTEND_URL_DEVELOPMENT: process.env.TAMALE_POS_FRONTEND_URL_DEVELOPMENT,
-  MONGO_URI: "", // stays empty
- 
-    },
-
-     snacks: {
+    
+ snacks: {
      JWT_SECRET: process.env.SNACK_JWT_SECRET,
     MONGO_URI: process.env.SNACK_MONGO_URI,
     FRONTEND_URL_PRODUCTION: process.env.SNACK_FRONTEND_URL_PRODUCTION,
@@ -75,6 +55,6 @@ menu: {
 
 
   };
-  
+ 
   module.exports = tenantConfigs;
   

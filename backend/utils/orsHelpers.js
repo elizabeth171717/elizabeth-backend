@@ -3,13 +3,12 @@
 const axios = require("axios");
 
 async function geocodeAddress(address, apiKey) {
+ 
+
   if (!address) {
     console.error("❌ geocodeAddress called with empty address!");
     throw new Error("Address is required for geocoding.");
   }
-
-  console.log("📍 Geocoding address:", address);
-
   try {
     const res = await axios.get("https://api.openrouteservice.org/geocode/search", {
       params: {
@@ -71,7 +70,7 @@ function calculateFee(miles) {
   if (adjustedMiles >= 0 && adjustedMiles <= 3) return 7;   // Short trips
   if (adjustedMiles > 3 && adjustedMiles <= 6) return 12;  // Medium trips
   if (adjustedMiles > 6 && adjustedMiles <= 9) return 18;  // Long trips
-  if (adjustedMiles > 9 && adjustedMiles <= 13) return 25; // Extra long trips ($20+ target)
+  if (adjustedMiles > 9 && adjustedMiles <= 13) return 35; // Extra long trips ($20+ target)
   
   throw new Error("Outside delivery zone (13+ miles)");
 }
