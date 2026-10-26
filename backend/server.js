@@ -10,7 +10,7 @@ const { initBroadcast } = require("./utils/broadcast");
 
 const tenantConfigs = require("./config/tenantConfigs");
 const paymentRoutes = require("./routes/paymentRoutes");
-const contactRoutes = require("./routes/contactRoutes");
+
 const deliveryFeeRoutes = require("./routes/deliveryFeeRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes");
@@ -20,6 +20,8 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const bhopRoutes = require("./routes/bhopRoutes");
 const snackListRoutes = require("./routes/snackListRoutes")
+const excePaymentRoutes = require("./routes/excePaymentRoutes");
+
 const getTenantDB = require("./utils/getTenantDB"); // ✅ FIX: add this
 const path = require("path");
 
@@ -73,7 +75,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Multi-tenant API Routes
 app.use("/api", paymentRoutes);
-app.use("/api", contactRoutes);
+
 app.use("/api", deliveryFeeRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", portfolioRoutes);
@@ -84,6 +86,7 @@ app.use("/api", uploadRoutes);
 app.use("/api", anahuacMenuRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", snackListRoutes);
+app.use("/api", excePaymentRoutes);
 app.use("/auth", bhopRoutes);
 app.use("/auth", anahuacAuthRoutes);
 
