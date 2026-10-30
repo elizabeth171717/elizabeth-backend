@@ -64,6 +64,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+console.log(
+  "🌐 PRODUCTION CORS CONFIG:",
+  Object.entries(tenantConfigs).map(([key, config]) => ({
+    tenant: key,
+    productionURL: config.FRONTEND_URL_PRODUCTION,
+  }))
+);
 app.use(express.json());
 
 
