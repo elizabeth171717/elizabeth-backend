@@ -63,6 +63,9 @@ const corsOptions = {
   },
 };
 
+console.log("🚀 NODE_ENV:", process.env.NODE_ENV);
+console.log("🚀 EXCE STORE PRODUCTION URL:", tenantConfigs.exceStore?.FRONTEND_URL_PRODUCTION);
+
 app.use(cors(corsOptions));
 console.log(
   "🌐 PRODUCTION CORS CONFIG:",
