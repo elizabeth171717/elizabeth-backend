@@ -103,7 +103,7 @@ async function sendExceVerificationEmail(
         color: #333;
         line-height: 1.5;
       ">
-        <h1 style="text-align: center;">Elizabeth's World</h1>
+        <h1 style="text-align: center;">ECXE<br>Your Favorite Gift Store</h1>
 
         <p>Hi ${customerName},</p>
 
@@ -175,7 +175,7 @@ async function sendExceVerificationEmail(
         ${deliverySection}
 
         <p style="margin-top: 30px; text-align: center; color: #777;">
-          Thank you for shopping with Elizabeth's World!
+          Thank you for shopping with ECXE!
         </p>
       </div>
     `;
@@ -185,7 +185,7 @@ async function sendExceVerificationEmail(
       to: customerEmail,
       subject: orderNumber
         ? `Order Confirmation - ${orderNumber}`
-        : "Your Elizabeth's World Order Confirmation",
+        : "ECXE - Your Favorite Gift Store",
       html: orderSummary,
     });
 

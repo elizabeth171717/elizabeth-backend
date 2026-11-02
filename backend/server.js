@@ -63,17 +63,9 @@ const corsOptions = {
   },
 };
 
-console.log("🚀 NODE_ENV:", process.env.NODE_ENV);
-console.log("🚀 EXCE STORE PRODUCTION URL:", tenantConfigs.exceStore?.FRONTEND_URL_PRODUCTION);
 
 app.use(cors(corsOptions));
-console.log(
-  "🌐 PRODUCTION CORS CONFIG:",
-  Object.entries(tenantConfigs).map(([key, config]) => ({
-    tenant: key,
-    productionURL: config.FRONTEND_URL_PRODUCTION,
-  }))
-);
+
 app.use(express.json());
 
 
