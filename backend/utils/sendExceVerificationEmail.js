@@ -181,7 +181,7 @@ async function sendExceVerificationEmail(
     `;
 
     await transporter.sendMail({
-      from: `"Elizabeth's World" <${tenant.EMAIL_USER}>`,
+      from: `"ECXE" <${tenant.EMAIL_USER}>`,
       to: customerEmail,
       subject: orderNumber
         ? `Order Confirmation - ${orderNumber}`
