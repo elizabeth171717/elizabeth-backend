@@ -44,6 +44,8 @@ const createPaymentIntent = async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "usd",
+
+        payment_method_types: ["card"],
       ...(customerInfo?.email
         ? { receipt_email: customerInfo.email }
         : {}),

@@ -45,28 +45,49 @@ async function sendExceVerificationEmail(
     const money = (amount) =>
       `$${Number(amount || 0).toFixed(2)}`;
 
-    const itemRows = items
-      .map((item) => {
-        const name = item.name || "Store item";
-        const quantity = Number(item.quantity || 1);
-        const price = Number(item.price || 0);
+  const itemRows = items
+  .map((item) => {
+    const name = item.name || "Store item";
+    const quantity = Number(item.quantity || 1);
+    const price = Number(item.price || 0);
 
-        return `
-          <tr>
-            <td style="padding: 12px 0; border-bottom: 1px solid #eee;">
-              <strong>${name}</strong>
-              ${item.description ? `<br>${item.description}` : ""}
-              ${item.color ? `<br>Color: ${item.color}` : ""}
-              ${item.size ? `<br>Size: ${item.size}` : ""}
-              <br>Quantity: ${quantity}
-            </td>
-            <td style="padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;">
-              ${money(price * quantity)}
-            </td>
-          </tr>
-        `;
-      })
-      .join("");
+    const customDesignSection =
+      item.designType === "customer-upload" && item.designUrl
+        ? `
+          <br><strong>Custom Uploaded Design:</strong>
+          <br>
+          <a href="${item.designUrl}" target="_blank">
+            View Your Uploaded Design
+          </a>
+          <br>
+          <img
+            src="${item.designUrl}"
+            alt="Customer uploaded design"
+            width="180"
+            style="max-width: 100%; height: auto; margin-top: 8px;"
+          />
+          <br>
+          <span>File: ${item.designFileName || "Uploaded artwork"}</span>
+        `
+        : "";
+
+    return `
+      <tr>
+        <td style="padding: 12px 0; border-bottom: 1px solid #eee;">
+          <strong>${name}</strong>
+          ${item.description ? `<br>${item.description}` : ""}
+          ${item.color ? `<br>Color: ${item.color}` : ""}
+          ${item.size ? `<br>Size: ${item.size}` : ""}
+          <br>Quantity: ${quantity}
+          ${customDesignSection}
+        </td>
+        <td style="padding: 12px 0; text-align: right; border-bottom: 1px solid #eee;">
+          ${money(price * quantity)}
+        </td>
+      </tr>
+    `;
+  })
+  .join("");
 
     let addressText = "";
 

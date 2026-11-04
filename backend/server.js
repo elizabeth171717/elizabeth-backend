@@ -21,7 +21,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const bhopRoutes = require("./routes/bhopRoutes");
 const snackListRoutes = require("./routes/snackListRoutes")
 const excePaymentRoutes = require("./routes/excePaymentRoutes");
-
+const exceUploadRoutes = require("./routes/exceUploadRoutes");
 const getTenantDB = require("./utils/getTenantDB"); // ✅ FIX: add this
 const path = require("path");
 
@@ -89,6 +89,7 @@ app.use("/api", anahuacMenuRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", snackListRoutes);
 app.use("/api", excePaymentRoutes);
+app.use("/api/exce", exceUploadRoutes);
 app.use("/auth", bhopRoutes);
 app.use("/auth", anahuacAuthRoutes);
 

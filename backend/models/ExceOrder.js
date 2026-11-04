@@ -37,6 +37,17 @@ const itemSchema = new mongoose.Schema(
     img: {
       type: String,
     },
+        designUrl: {
+      type: String,
+    },
+
+    designFileName: {
+      type: String,
+    },
+
+    designType: {
+      type: String,
+    },
   },
   { _id: false }
 );
