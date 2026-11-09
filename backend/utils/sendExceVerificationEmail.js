@@ -36,6 +36,8 @@ async function sendExceVerificationEmail(
       fulfillment,
       deliveryAddress,
       itemsTotal = 0,
+       shirtDiscount = 0,
+  discountedItemsTotal = 0,
       tax = 0,
       deliveryFee = 0,
       orderTotal = 0,
@@ -166,7 +168,28 @@ async function sendExceVerificationEmail(
             <td>Items Subtotal</td>
             <td style="text-align: right;">${money(itemsTotal)}</td>
           </tr>
-
+${
+  Number(shirtDiscount) > 0
+    ? `
+      <tr>
+        <td style="padding: 8px 0;">
+          Automatic Shirt Discount
+        </td>
+        <td style="text-align: right; color: #16833e;">
+          -${money(shirtDiscount)}
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 8px 0;">
+          Discounted Subtotal
+        </td>
+        <td style="text-align: right;">
+          ${money(discountedItemsTotal)}
+        </td>
+      </tr>
+    `
+    : ""
+}
           <tr>
             <td>Tax</td>
             <td style="text-align: right;">${money(tax)}</td>

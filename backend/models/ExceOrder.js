@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema(
@@ -34,10 +35,15 @@ const itemSchema = new mongoose.Schema(
       required: true,
     },
 
+    image: {
+      type: String,
+    },
+
     img: {
       type: String,
     },
-        designUrl: {
+
+    designUrl: {
       type: String,
     },
 
@@ -48,32 +54,36 @@ const itemSchema = new mongoose.Schema(
     designType: {
       type: String,
     },
+
+    customProperties: [
+      {
+        key: String,
+        value: String,
+      },
+    ],
   },
   { _id: false }
 );
 
 const orderSchema = new mongoose.Schema(
   {
-    // The products that were in the cart
+    // Products in the cart
     items: {
       type: [itemSchema],
       required: true,
     },
 
-    // pickup or delivery
     fulfillment: {
       type: String,
       enum: ["pickup", "delivery"],
       required: true,
     },
 
-    // Only used when fulfillment === "delivery"
     deliveryAddress: {
       type: mongoose.Schema.Types.Mixed,
       default: null,
     },
 
-    // Customer information
     customerInfo: {
       name: {
         type: String,
@@ -97,6 +107,20 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
 
+    shirtQuantity: {
+      type: Number,
+      default: 0,
+    },
+
+    shirtDiscount: {
+      type: Number,
+      default: 0,
+    },
+
+    discountedItemsTotal: {
+      type: Number,
+    },
+
     tax: {
       type: Number,
       required: true,
@@ -112,13 +136,11 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
 
-    // Payment information will be added when you connect Stripe
     paymentStatus: {
       type: String,
       default: "pending",
     },
 
-    // Order status
     status: {
       type: String,
       default: "Pending",

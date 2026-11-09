@@ -170,7 +170,71 @@ const handlePayment = async (req, res) => {
   }
 };
 
+// Get all Exce orders
+const getExceOrders = async (req, res) => {
+  const { client } = req.params;
+
+  try {
+    const db = await getTenantDB(client);
+
+    const Order =
+      db.models.ExceOrder || db.model("ExceOrder", orderSchema);
+
+    const orders = await Order.find().sort({ createdAt: -1 });
+
+    return res.status(200).json(orders);
+  } catch (error) {
+    console.error("Get Exce orders error:", error);
+
+    return res.status(500).json({
+      message: "Unable to retrieve Exce orders",
+    });
+  }
+};
+
+
+// Update Exce order status
+const updateExceOrderStatus = async (req, res) => {
+  const { client, orderId } = req.params;
+  const { status } = req.body;
+
+  try {
+    if (status !== "Delivered") {
+      return res.status(400).json({
+        message: "Invalid order status",
+      });
+    }
+
+    const db = await getTenantDB(client);
+
+    const Order =
+      db.models.ExceOrder || db.model("ExceOrder", orderSchema);
+
+    const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    return res.status(200).json(updatedOrder);
+  } catch (error) {
+    console.error("Update Exce order status error:", error);
+
+    return res.status(500).json({
+      message: "Unable to update Exce order status",
+    });
+  }
+};
+
 module.exports = {
   createPaymentIntent,
   handlePayment,
+  getExceOrders,
+  updateExceOrderStatus,
 };
