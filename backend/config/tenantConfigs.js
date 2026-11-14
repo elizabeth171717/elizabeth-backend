@@ -69,6 +69,12 @@ exceStore: {
     CLOUDINARY_API_SECRET: process.env.EXCE_STORE_CLOUDINARY_API_SECRET,  
 },
 
+
+rqCode: {
+    FRONTEND_URL_PRODUCTION: process.env.RQ_CODE_FRONTEND_URL_PRODUCTION,
+    FRONTEND_URL_DEVELOPMENT: process.env.RQ_CODE_FRONTEND_URL_DEVELOPMENT,
+},
+
   };
  
   module.exports = tenantConfigs;
