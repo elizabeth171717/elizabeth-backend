@@ -93,6 +93,17 @@ app.use("/api/exce", exceUploadRoutes);
 app.use("/auth", bhopRoutes);
 app.use("/auth", anahuacAuthRoutes);
 
+console.log("🌐 PRODUCTION MODE:", isProduction);
+
+console.log(
+  "🌐 RQ CODE PRODUCTION URL:",
+  tenantConfigs.rqCode.FRONTEND_URL_PRODUCTION
+);
+
+console.log(
+  "🌐 ANAHUAC PRODUCTION URL:",
+  tenantConfigs.anahuac.FRONTEND_URL_PRODUCTION
+);
 
 // --- WS ONLY for universalmenu ---
 const server = http.createServer(app);
