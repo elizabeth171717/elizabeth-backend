@@ -107,6 +107,12 @@ const GroupSchema = new mongoose.Schema({
 const SectionSchema = new mongoose.Schema({
   id: { type: String, required: true },
   section: { type: String, required: true },
+  // NEW: Section description
+  description: {
+    type: String,
+    default: "",
+  },
+
   items: [DishSchema],
   groups: [GroupSchema],
 }, { _id: false });
@@ -121,6 +127,10 @@ const anahuacMenuSchema = new mongoose.Schema(
 
     restaurantName: { type: String, required: true },
 
+ menuDescription: {
+      type: String,
+      default: "",
+    },
     slug: {
       type: String,
       required: true,

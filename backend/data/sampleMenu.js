@@ -1,5 +1,7 @@
 module.exports = {
   restaurantName: "Sample Restaurant",
+ menuDescription:
+    "Welcome to Sample Restaurant! Explore our diverse menu featuring appetizers, mains, desserts, and drinks. Enjoy a delightful dining experience with our freshly prepared dishes.",
 
   views: [
     {
@@ -22,7 +24,7 @@ module.exports = {
     {
       id: "1",
       section: "Appetizers",
-
+      description: "Start your meal with our delicious selection of freshly prepared appetizers.",
       groups: [],
 
       items: [
@@ -181,7 +183,7 @@ module.exports = {
       id: "2",
 
       section: "Mains",
-
+description: "Main dishes to satisfy your appetite.",
       groups: [],
 
       items: [
@@ -367,7 +369,7 @@ module.exports = {
       id: "3",
 
       section: "Desserts",
-
+      description: "Delicious desserts to satisfy your sweet tooth.",
       groups: [],
 
       items: [
@@ -530,7 +532,7 @@ module.exports = {
       id: "4",
 
       section: "Drinks",
-
+      description: "Alcoholic and non-alcoholic beverages.",
       groups: [
         {
           id: "g1",
